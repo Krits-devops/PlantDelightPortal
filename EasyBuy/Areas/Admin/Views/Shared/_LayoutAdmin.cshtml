@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>PlantDelightPortal</title>
+    
+    <link href="~/Content/fontawesome-all.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Layout.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/umd/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/PlantDelightPortal.js"></script>
+
+    <style type="text/css">
+        i, a {
+            color: #ffffff;
+        }
+
+            a:hover, i:hover {
+                color: #ffc107;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark mb-0" style="background-color:#212529">
+            <a class="nav-item nav-link">
+                <span class="text-white h4">
+                    <i class="fa fa-shopping-bag text-warning"></i>
+                    PlantDelightPortal<small>.com</small>
+                </span>
+            </a>
+        </nav>
+    </header>
+
+    <section class="body-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 p-0">
+                    <div class="col-md-2 float-left m-0 p-0 h-100 bg-dark">
+                        <nav id="sidebar" class="mw-100">
+                            <ul class="list-unstyled components p-0 text-center">
+                                <li>
+                                    <a href="\Admin\DashboardAdmin\Index" role="button"><i class="fa fa-chart-line"></i> Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="#MasterSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                                        <i class="fa fa-table"></i>
+                                        Master
+                                    </a>
+                                    <ul class="collapse list-unstyled show" id="MasterSubmenu">
+                                        <li><a href="@Url.Action("Index","Country")">Country</a></li>
+                                        <li><a href="@Url.Action("Index","Province")">Province</a></li>
+                                        <li><a href="@Url.Action("Index","City")">City</a></li>
+                                        <li><a href="@Url.Action("Index","Gender")">Gender</a></li>
+                                        <li><a href="@Url.Action("Index","SecurityQuestions")">Security Questions</a></li>
+                                        <li><a href="@Url.Action("Index","OrderStatus")">Order Status</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#ProductSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                        <i class="fa fa-cube"></i>
+                                        Product
+                                    </a>
+                                    <ul class="collapse list-unstyled" id="ProductSubmenu">
+                                        <li><a href="@Url.Action("Index","Category")">Category</a></li>
+                                        <li><a href="@Url.Action("Index","SubCategory")">Sub Category</a></li>
+                                        <li><a href="@Url.Action("Index","Attribute")">Attribute</a></li>
+                                        @*<li><a href="@Url.Action("Index","AttributeChoice")">Attribute Choice</a></li>*@
+                                        <li><a href="@Url.Action("Index","Product")">Product</a></li>
+                                    </ul>
+                                </li>
+                                <hr class="bg-secondary m-0 p-0">
+                                <li>
+                                    <a href="#ReportSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                        <i class="fa fa-clipboard-list"></i>
+                                        Report
+                                    </a>
+                                    <ul class="collapse list-unstyled" id="ReportSubmenu">
+                                        <li><a href="@Url.Action("rptOrder","rptOrder")">Order Status</a></li>
+                                        <li><a href="@Url.Action("rptSales","rptSales")">Sales</a></li>
+                                        <li><a href="@Url.Action("rptUser","rptUser")">User</a></li>
+                                    </ul>
+                                </li>
+                                <hr class="bg-secondary m-0 p-0">
+                                <li>
+                                    <a href="@Url.Action("Index","Home", new { Area = ""})"><i class="fa fa-sign-out-alt"></i> Logout</a>
+                                </li>
+                                <hr class="bg-secondary m-0 p-0">
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-md-10 float-right m-0 p-0">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="mojFooter" style="background-color:#212529">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-9">
+                    <ul class="nav mt-2 mb-2">
+                        <li class="nav-item"><a class="nav-link">Home</a></li>
+                        <li class="nav-item"><a class="nav-link">About</a></li>
+                        <li class="nav-item"><a class="nav-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <div class="pmd-site-info text-white float-right">
+                        <span class="text-muted">&copy; 2020 PlantDelightPortal.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

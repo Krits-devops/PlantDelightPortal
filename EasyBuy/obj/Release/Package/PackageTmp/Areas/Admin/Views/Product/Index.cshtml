@@ -1,0 +1,105 @@
+﻿<div class="jumbotron m-0 p-3 rounded-0">
+    <h4>Product</h4>
+</div>
+<div id="strMessage" class="alert alert-dismissible fade show float-right" style="z-index:999999">
+</div>
+<div class="mt-2 ml-4">
+    <a id="btnAddNew" class="btn btn-dark text-white" href="@Url.Action("CreateProduct","Product")"><i class="fa fa-plus"></i> Add New</a>
+</div>
+
+<div class="col-md-12 p-4 w-100">
+    <div class="table-responsive" style="height:400px;">
+        <table id="tblCity" class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="th-sm w-auto sticky-top">
+                        Category
+                    </th>
+                    <th class="th-sm w-auto sticky-top">
+                        SubCategory
+                    </th>
+                    <th class="th-sm w-auto sticky-top">
+                        Name
+                    </th>
+                    <th class="th-sm w-auto sticky-top">
+                        Price
+                    </th>
+                    <th class="th-sm w-auto sticky-top">
+                        Stock Qty
+                    </th>
+                    <th class="th-sm sticky-top">
+                    </th>
+                    <th class="th-sm sticky-top">
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="w-100"></tbody>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        FillProduct();
+    });
+
+    function FillProduct() {
+        $.ajax({
+            url: "/Product/FillProduct",
+            type: "GET",
+            data: "json",
+            success: function (response) {
+                var html = ""
+
+                $.each(response, function (key, Item) {
+                    html += "<tr>";
+                    html += "<td>" + Item.CategoryName + "</td>";
+                    html += "<td>" + Item.SubCategoryName + "</td>";
+                    html += "<td>" + Item.Name + "</td>";
+                    html += "<td>" + Item.Price + "</td>";
+                    html += "<td>" + Item.StkQty + "</td>";
+                    html += "<td class='text-center'><a href='#' onclick=getbyID('" + Item.Id + "')><i class='fa fa-edit text-warning'></i></a></td>";
+                    html += "<td class='text-center'><a href='#' onclick=Delele('" + Item.Id + "')><i class='fa fa-trash text-danger'></i></a></td>";
+                    html += "</tr>";
+                });
+
+                $("#tblCity tbody").html(html);
+            },
+            error: function (response) {
+                alert(response.responseText)
+            }
+        });
+    }
+
+    function Delele(ID) {
+        var ans = confirm("Are you sure you want to delete this Record?");
+
+        if (ans) {
+            $("#strMessage").text('');
+            $("#strMessage").fadeIn();
+
+            $.ajax({
+                url: "/Product/Delete/" + ID,
+                type: "POST",
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function (result) {
+                    FillProduct();
+                    if (parseInt(result) > 0) {
+                        $("#strMessage").text("successfully deleted.");
+                        $("#strMessage").addClass("alert-success");
+                        $("#strMessage").fadeOut(3000);
+                    }
+                    else {
+                        $("#strMessage").text("can't deleted.");
+                        $("#strMessage").addClass("alert-danger");
+                        $("#strMessage").fadeOut(3000);
+                    }
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+    }
+</script>

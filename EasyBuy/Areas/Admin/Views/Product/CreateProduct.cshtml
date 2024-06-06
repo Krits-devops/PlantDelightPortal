@@ -1,0 +1,407 @@
+﻿@model PlantDelightPortal.Areas.Admin.Models.mdlProduct
+
+<div class="jumbotron m-0 p-3 rounded-0">
+    <h4>Add Product</h4>
+</div>
+<div id="strMessage" class="alert alert-dismissible fade show float-right" style="z-index:999999">
+</div>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.JsonProductAttributeList)
+
+    <div class="container-fluid">
+        <ul class="nav nav-tabs mt-2" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active text-dark" id="BasicDetails-tab" data-toggle="tab" href="#BasicDetails" role="tab" aria-controls="home" aria-selected="true">Basic Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="Images-tab" data-toggle="tab" href="#Images" role="tab" aria-controls="profile" aria-selected="false">Images</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="Attributes-tab" data-toggle="tab" href="#Attributes" role="tab" aria-controls="contact" aria-selected="false">Attributes</a>
+            </li>
+        </ul>
+        <div class="tab-content w-100" id="myTabContent">
+            <div class="tab-pane fade show active" id="BasicDetails" role="tabpanel" aria-labelledby="home-tab">
+                <div class="col-md-12 form-group">
+                </div>
+                <div class="col-md-12 form-group row">
+                    <div class="col-md-2 pt-2 h6">
+                        Name :
+                    </div>
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Name", maxlength = "100", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-md-12 form-group row">
+                    <div class="col-md-2 pt-2 h6">
+                        Category :
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.lstCategory, "Id", "Name"), "-- Category --", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-12 form-group row">
+                    <div class="col-md-2 pt-2 h6">
+                        Sub Category :
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DropDownListFor(m => m.SubCategoryId, new SelectList(Model.lstSubCategory, "Id", "Name"), "-- SubCategory --", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-12 form-group row">
+                    <div class="col-md-2 pt-2 h6">
+                        Price :
+                    </div>
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(m => m.Price, new { @class = "form-control", placeholder = "Price", maxlength = "100", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-md-12 form-group row">
+                    <div class="col-md-2 pt-2 h6">
+                        Stock Qty :
+                    </div>
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(m => m.StkQty, new { @class = "form-control", placeholder = "Stock Qty", maxlength = "100", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-md-12 form-group row">
+                    <div class="col-md-2 pt-2 h6">
+                        Description :
+                    </div>
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(m => m.Description, new { @class = "form-control", placeholder = "Description", maxlength = "1500", autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="col-md-12 form-group">
+                    <button type="button" class="btn btn-dark" id="btnAdd">Add</button>
+                    <button type="button" class="btn btn-dark" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                    <a id="btnCancel" class="btn btn-outline-dark" href="@Url.Action("Index", "Product")">Cancel</a>
+                </div>
+                <div id="divMsg" class="p-2"></div>
+            </div>
+            <div class="tab-pane fade" id="Images" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="mt-2 mb-2">
+                    <a id="btnAddImage" class="btn btn-dark text-white" data-toggle="modal" data-target="#CategoryModal" onclick="AddProductImageToGrid();"><i class="fa fa-plus"></i> Add Image</a>
+                </div>
+                <table id="tblProductImage" class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Sr No.</th>
+                            <th scope="col">Image Upload</th>
+                            <th scope="col">Preview</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="Attributes" role="tabpanel" aria-labelledby="contact-tab">
+                <table id="tblProductAttribute" class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Sr No.</th>
+                            <th scope="col">Attribute</th>
+                            <th scope="col">Value</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    var ListProductImages = [];
+    var ListProductAttributes = [];
+    var NewGuId = "";
+
+    $(document).ready(function () {
+        $("#divMsg").text('');
+
+        $("#CategoryId").change(function () {
+            if ($("#CategoryId").val() != null && $("#CategoryId").val() != "") {
+                var CategoryId = $("#CategoryId").val();
+
+                $.ajax({
+                    url: "/SubCategory/SubCategoryByCategoryId",
+                    data: JSON.stringify({ CategoryId: CategoryId }),
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        $("#SubCategoryId").empty();
+                        $.each(data, function (index, row) {
+                            $("#SubCategoryId").append("<option value='" + row.Id + "'>" + row.Name + "</option>")
+                        });
+                    },
+                    error: function (response) {
+                        alert(response.responseText)
+                    }
+                });
+            }
+        });
+    });
+
+    function AddProductImageToGrid() {
+        $.ajax({
+            url: "/Product/NewGuid",
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                AddImage(result);
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+    function AddImage(NewGuid) {
+        var SrNo = GetMaxNoOfList(ListProductImages) + 1;
+
+        var model = {
+            "SrNo": SrNo,
+            "ProductImageId": NewGuid
+        }
+        ListProductImages.push(model);
+
+        for (var i = 0; i < ListProductImages.length; i++) {
+            if (ListProductImages[i].SrNo == SrNo) {
+                var str = '';
+                str += '<tr id="' + ListProductImages[i].ProductImageId + '">';
+                str += '<td style="height:120px;">' + SrNo + '</td>';
+                str += '<td>';
+                str += '<input type="file" id="ProductImg_' + SrNo + '" onchange="PreviewImage(this, \'' + SrNo + '\' ,\'' + ListProductImages[i].ProductImageId + '\');" />';
+                str += '</td>';
+                str += '<td>';
+                str += '<img id="ProductPreviewImg_' + SrNo + '" src="/Areas/Admin/Content/Images/Product/DefaultProduct.png" alt="your image" style="height:100px;width:100px;" />';
+                str += '</td>';
+                str += '<td class=text-center>';
+                str += '<a onclick="DeleleProductImage(\'' + SrNo + '\' ,\'' + ListProductImages[i].ProductImageId + '\');"><i class="fa fa-trash text-danger"></i></a>';
+                str += '</td>';
+                str += '</tr>';
+
+                $('#tblProductImage tbody').append(str);
+            }
+        }
+    }
+
+    function PreviewImage(input, SrNo, ProductImageId) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function () {
+                $("#ProductPreviewImg_" + SrNo).attr("src", reader.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+            UploadImage(SrNo, ProductImageId);
+        }
+    }
+
+    function UploadImage(SrNo, ProductImageId) {
+        var files = $("#ProductImg_" + SrNo).get(0).files;
+        var fileData = new FormData();
+
+        for (var i = 0; i < files.length; i++) {
+            fileData.append("fileInput", files[i]);
+        }
+        fileData.append('ProductId', $("#Id").val());
+        fileData.append('ProductImageId', ProductImageId);
+
+        $.ajax({
+            type: "POST",
+            url: "/Product/UploadImage",
+            dataType: "json",
+            contentType: false,
+            processData: false,
+            data: fileData,
+            success: function (result, status, xhr) {
+            },
+            error: function (xhr, status, error) {
+            }
+        });
+    }
+
+    function DeleleProductImage(SrNo) {
+        var ProductImageId;
+        for (var i = 0; i < ListProductImages.length; i++) {
+            if (ListProductImages[i].SrNo == SrNo) {
+                ProductImageId = ListProductImages[i].ProductImageId;
+                $('#tblProductImage tbody #' + ProductImageId).remove();
+                ListProductImages.splice(i, 1);
+            }
+        }
+
+        $.ajax({
+            url: "/Product/DeleleImage/" + ProductImageId,
+            type: "POST",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            success: function (result) {
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+    function GetMaxNoOfList(List) {
+        var MaxNo = 0;
+
+        for (var i = 0; i < List.length; i++) {
+            if (parseInt(List[i].SrNo) > MaxNo)
+                MaxNo = parseInt(List[i].SrNo);
+        }
+        return MaxNo;
+    }
+
+    function Validate() {
+        if ($("#Name").val() == null || $("#Name").val() == "") {
+            $("#divMsg").text("Please enter Name.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+
+        if ($("#CategoryId").val() == null || $("#CategoryId").val() == "") {
+            $("#divMsg").text("Please select Category.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+
+        if ($("#SubCategoryId").val() == null || $("#SubCategoryId").val() == "") {
+            $("#divMsg").text("Please select SubCategory.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+
+        if ($("#Price").val() == null || $("#Price").val() == "") {
+            $("#divMsg").text("Please enter Price.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+
+        if ($("#Price").val() != null && $("#Price").val() != "" && parseFloat($("#Price").val()) <= 0) {
+            $("#divMsg").text("Please enter valid Price.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+
+        if ($("#StkQty").val() == null || $("#StkQty").val() == "") {
+            $("#divMsg").text("Please enter Stock Qty.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+
+        if ($("#StkQty").val() != null && $("#StkQty").val() != "" && parseFloat($("#StkQty").val()) <= 0) {
+            $("#divMsg").text("Please enter valid Stock Qty.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+
+        return true;
+    }
+
+    $("#btnAdd").click(function () {
+        $("#divMsg").text('');
+        if (Validate()) {
+            $("#strMessage").text('');
+            $("#strMessage").fadeIn();
+
+            for (var i = 0; i < ListProductAttributes.length; i++) {
+                if (ListProductAttributes[i].Id == null || ListProductAttributes[i].Id == "") {
+                    fun_NewGrid();
+                    ListProductAttributes[i].Id = NewGuId;
+                }
+                ListProductAttributes[i].AttributeValue = $("#" + ListProductAttributes[i].AttributeId).val();
+            }
+
+            $('#JsonProductAttributeList').val(JSON.stringify(ListProductAttributes));
+            $('form').submit();
+        }
+    });
+
+    $(function () {
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            var target = $(e.target).attr("href");
+
+            if (target == "#Attributes") {
+                if ($("#CategoryId").val() == null || $("#CategoryId").val() == "") {
+                    $("#divMsg").text("Please select Category.");
+                    $("#divMsg").addClass("text-danger");
+                    $('#BasicDetails-tab').trigger('click');
+                    return false;
+                }
+
+                if ($("#SubCategoryId").val() == null || $("#SubCategoryId").val() == "") {
+                    $("#divMsg").text("Please select SubCategory.");
+                    $("#divMsg").addClass("text-danger");
+                    $('#BasicDetails-tab').trigger('click');
+                    return false;
+                }
+
+                if (ListProductAttributes.length == 0) {
+                    $.ajax({
+                        url: "/Product/GetProductAttributeBySubCategoryId/" + $("#SubCategoryId").val(),
+                        typr: "GET",
+                        contentType: "application/json;charset=UTF-8",
+                        dataType: "json",
+                        success: function (result) {
+                            if (result.lstAttribute != undefined && result.lstAttribute != null) {
+                                $.each(result.lstAttribute, function (index, row) {
+                                    var SrNo = GetMaxNoOfList(ListProductAttributes) + 1;
+                                    var model = {
+                                        "SrNo": SrNo,
+                                        "Id": "",
+                                        "ProductId": $("#Id").val(),
+                                        "AttributeId": row.Id,
+                                        "AttributeValue": "",
+                                        "Name": row.Name
+                                    }
+                                    ListProductAttributes.push(model);
+                                });
+                                FillProductAttribute();
+                            }
+                        },
+                        error: function (errormessage) {
+                            alert(errormessage.responseText);
+                        }
+                    });
+                }
+            }
+        });
+    })
+
+    function FillProductAttribute() {
+        var str = '';
+        for (var i = 0; i < ListProductAttributes.length; i++) {
+            str += '<tr>';
+            str += '<td>' + ListProductAttributes[i].SrNo + '</td>';
+            str += '<td>' + ListProductAttributes[i].Name + '</td>';
+            str += '<td>';
+            str += '<input type="text" id="' + ListProductAttributes[i].AttributeId + '"/>';
+            str += '</td>';
+            str += '</tr>';
+        }
+        $('#tblProductAttribute tbody').html(str);
+    }
+
+    function fun_NewGrid() {
+        $.ajax({
+            url: "/Product/NewGuid",
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                NewGuId = result;
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+</script>

@@ -1,0 +1,258 @@
+﻿@model EasyBuy.Models.mdlUserMaster
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="container-fluid">
+    @*<div class="alert alert-success alert-dismissible fade show float-right">
+            <span id="strMessage"></span>
+        </div>*@
+    <div class="row bg-white">
+        <div class="col-md-9">
+            <div class="card m-3 bg-white">
+                <div class="card-header">
+                    <h5>Profile</h5>
+                </div>
+                <div class="card-body">
+                    <form id="formProfile">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card bg-dark text-center">
+                                    <div class="card-body">
+                                        <a id="btnProfileImage" role="button">
+                                            <img id="ImgProfile" class="rounded-circle bg-white" src="@Model.ProfileImage" style="width:150px;height:150px;" />
+                                        </a>
+                                    </div>
+                                    <div class="card-footer bg-dark text-white">
+                                        <div>
+                                            <input type="file" id="FileProfileImage" style="display:none" />
+                                        </div>
+                                        <div>
+                                            @Model.FirstName @Model.LastName
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-row">
+                                    <div class="col form-group">
+                                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", placeholder = "First name", maxlength = "100" })
+                                    </div>
+                                    <div class="col form-group">
+                                        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", placeholder = "Last name", maxlength = "100" })
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        @Html.DropDownListFor(m => m.GenderId, new SelectList(Model.lstGender, "Id", "Name"), "-- Gender --", new { Class = "form-control" })
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        @Html.TextBoxFor(model => model.MobileNo, new { @class = "form-control", placeholder = "Mobile No.", maxlength = "10" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.DropDownListFor(m => m.SecurityQueId, new SelectList(Model.lstSecurityQue, "Id", "Question"), "-- Security Question --", new { Class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.SecurityAns, new { @class = "form-control", placeholder = "Answer", maxlength = "100" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Email", maxlength = "100", @readonly = "@readonly" })
+                                </div>
+                                <div class="form-group">
+                                    <div class="mt-5 text-center">
+                                        <a id="btnSaveProfile" class="btn btn-dark form-control text-white">Save Changes</a>
+                                    </div>
+                                </div>
+                                <div id="DivMsgProfile" class="font-weight-bold float-right">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card mt-3 bg-white text-center">
+                <div class="card-header">
+                    <h5>Change Password</h5>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div id="divCurrentPassword" class="form-group">
+                            <input id="txtCurrentPassword" type="password" placeholder="Current Password" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <input id="txtNewPassword" type="password" placeholder="New Password" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <input id="txtConfirmPassword" type="password" placeholder="Confirm Password" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <a id="btnChangePassword" class="btn btn-dark form-control text-white">Save</a>
+                        </div>
+                        <div id="DivMsgChangePassword" class="font-weight-bold float-right">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#DivMsgProfile').html('');
+        $('#DivMsgChangePassword').html('');
+
+        if ('@Model.GoogleLogin' == 'True' && '@Model.Password' == '') {
+            $('#divCurrentPassword').hide();
+        }
+        else {
+            $('#divCurrentPassword').show();
+        }
+    });
+
+    $('#btnSaveProfile').click(function () {
+        if ($("#FirstName").val() == "") {
+            $("#DivMsgProfile").text("Please enter first name.");
+            $("#DivMsgProfile").addClass("text-danger");
+            return false;
+        }
+        if ($("#LastName").val() == "") {
+            $("#DivMsgProfile").text("Please enter last name.");
+            $("#DivMsgProfile").addClass("text-danger");
+            return false;
+        }
+        if ($("#GenderId").val() == "") {
+            $("#DivMsgProfile").text("Please select gender.");
+            $("#DivMsgProfile").addClass("text-danger");
+            return false;
+        }
+        if ($("#MobileNo").val() == "") {
+            $("#DivMsgProfile").text("Please enter Mobile No.");
+            $("#DivMsgProfile").addClass("text-danger");
+            return false;
+        }
+        if ($("#SecurityQueId").val() == "") {
+            $("#DivMsgProfile").text("Please select security question.");
+            $("#DivMsgProfile").addClass("text-danger");
+            return false;
+        }
+        if ($("#SecurityAns").val() == "") {
+            $("#DivMsgProfile").text("Please enter answer.");
+            $("#DivMsgProfile").addClass("text-danger");
+            return false;
+        }
+
+        var model = {
+            FirstName: $('#FirstName').val(),
+            LastName: $('#LastName').val(),
+            GenderId: $('#GenderId').val(),
+            MobileNo: $('#MobileNo').val(),
+            SecurityQueId: $('#SecurityQueId').val(),
+            SecurityAns: $('#SecurityAns').val()
+        };
+
+        $.ajax({
+            url: "/Home/UserProfile",
+            data: JSON.stringify(model),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (Result) {
+                if (Result.result == "success") {
+                    $('#DivMsgProfile').html('Profile Updated.');
+                    $('#DivMsgProfile').addClass('text-success');
+                }
+            },
+            error: function (xhr, status, error) {
+                $('#DivMsgProfile').html('Something is wrong!');
+                $('#DivMsgProfile').addClass('text-danger');
+            }
+        });
+    });
+
+    $('#btnProfileImage').click(function () {
+        $('#FileProfileImage').trigger('click');
+    });
+
+    $('#FileProfileImage').on('change', function () {
+        var files = $(this).get(0).files;
+
+        if (files.length > 0) {
+            var fileData = new FormData();
+
+            for (var i = 0; i < files.length; i++) {
+                fileData.append("fileInput", files[i]);
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/Home/ChangeUserProfileImage",
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                data: fileData,
+                success: function (Result) {
+                    $('#DivMsgProfile').html('Profile Image Changed.');
+                    $('#DivMsgProfile').addClass('text-success');
+                    $('#ImgProfile').attr('src', Result.ProfileImagePath);
+                },
+                error: function (xhr, status, error) {
+                    $('#DivMsgProfile').html('Something is wrong!');
+                    $('#DivMsgProfile').addClass('text-danger');
+                }
+            });
+        }
+    });
+
+    $('#btnChangePassword').on('click', function () {
+        if ('@Model.Password' != '') {
+            if ($("#txtCurrentPassword").val() == "") {
+                $("#DivMsgChangePassword").text("Please enter current password.");
+                $("#DivMsgChangePassword").addClass("text-danger");
+                return false;
+            }
+            if ('@Model.Password' != $("#txtCurrentPassword").val()) {
+                $("#DivMsgChangePassword").text("current password is wrong.");
+                $("#DivMsgChangePassword").addClass("text-danger");
+                return false;
+                }
+        }
+        if ($("#txtNewPassword").val() == "") {
+            $("#DivMsgChangePassword").text("Please enter new password.");
+            $("#DivMsgChangePassword").addClass("text-danger");
+            return false;
+        }
+        if ($("#txtConfirmPassword").val() == "") {
+            $("#DivMsgChangePassword").text("Please enter confirm password.");
+            $("#DivMsgChangePassword").addClass("text-danger");
+            return false;
+        }
+        if ($("#txtNewPassword").val() != $("#txtConfirmPassword").val()) {
+            $("#DivMsgChangePassword").text("New password and confirm password must be same.");
+            $("#DivMsgChangePassword").addClass("text-danger");
+            return false;
+        }
+
+        $.ajax({
+            url: "/Home/ChangePassword",
+            data: '{Password: "' + $("#txtNewPassword").val() + '" }',
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (Result) {
+                if (Result.result == "success") {
+                    $('#DivMsgChangePassword').html('Password changed.');
+                    $('#DivMsgChangePassword').addClass('text-success');
+                }
+            },
+            error: function (xhr, status, error) {
+                $('#DivMsgChangePassword').html('Something is wrong!');
+                $('#DivMsgChangePassword').addClass('text-danger');
+            }
+        });
+    });
+</script>

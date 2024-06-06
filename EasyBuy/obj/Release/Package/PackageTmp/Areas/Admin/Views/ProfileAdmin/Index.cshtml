@@ -1,0 +1,9 @@
+﻿@using (Html.BeginForm("Index", "ProfileAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        @Html.TextBox("file", "", new { type = "file", multiple = "true" }) <br />
+        <input type="submit" value="Upload" aria-hidden="true" />
+
+        @ViewBag.Message
+    </div>
+}  

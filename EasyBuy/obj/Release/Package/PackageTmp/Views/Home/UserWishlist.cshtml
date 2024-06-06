@@ -1,0 +1,157 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card wish-list m-3">
+                <table id="tblUserWishList" class="table table-hover">
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        FillUserWishList();
+    });
+
+    function FillUserWishList() {
+        $("#tblUserWishList tbody").empty();
+
+        $.ajax({
+            url: "/Home/FillUserWishList",
+            typr: "POST",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            success: function (response) {
+                var html = '';
+                html += '<tr>';
+                html += '<td colspan="4" class="bg-white"><h3 class="product-name"><strong>My Wishlist (';
+                html += response.RecordCount;
+                html += ')</strong></h3></td>';
+                html += '</tr>';
+
+                $.each(response.lstModel, function (key, Item) {
+                    html += '<tr>';
+                    html += '<td style="width:15%">';
+                    html += '<a class="img-wrap" href="/Home/ProductDetail/' + Item.Id + '" role="button">';
+                    html += '<img src="' + Item.ImagePath + '" style="height:80px;width:80px;">';
+                    html += '</a>';
+                    html += '</td>';
+                    html += '<td style="width:65%">';
+                    html += '<h5 class="product-name">';
+                    html += '<strong>';
+                    html += Item.Name;
+                    html += '</strong> <small>(';
+                    html += Item.StkQty;
+                    html += ')</small></h5><h6>';
+                    html += Item.Description;
+                    html += '</h6>';
+                    for (var i = 0; i < 5; i++) {
+                        if (Item.Rating > i && Item.Rating < i + 1) {
+                            html += '<i class="fa fa-star-half text-warning"></i>';
+                        }
+                        else if (Item.Rating >= i + 1) {
+                            html += '<i class="fa fa-star text-warning checked"></i>';
+                        }
+                    }
+                    html += '</td>';
+                    html += '<td style="width:10%">';
+                    html += '<h5 class="product-name">';
+                    html += '<strong>$ ';
+                    html += Item.Price;
+                    html += '</strong>';
+                    html += '</h5>'; html += '</td>';
+                    html += '<td style="width:5%">';
+                    html += '<a onclick="AddToCart(\'' + Item.Id + '\');" role="button">';
+                    if (Item.InCart == true)
+                        html += '<i id="SC' + Item.Id + '" class="fa fa-shopping-cart text-warning"></i>';
+                    else
+                        html += '<i id="SC' + Item.Id + '" class="fa fa-shopping-cart text-dark"></i>';
+                    html += "</a>";
+                    html += '</td>';
+                    html += '<td style="width:5%" class="text-center">';
+                    html += '<a onclick="DeleteFromWishlist(\'' + Item.Id + '\');" role="button">';
+                    html += '<i class="fa fa-trash text-danger"></i>';
+                    html += '</a>';
+                    html += '</td>';
+                    html += '</tr>';
+                });
+
+                $("#tblUserWishList tbody").append(html);
+            },
+            error: function (response) {
+                alert(response.responseText)
+            }
+        });
+    }
+
+    function DeleteFromWishlist(ProductId) {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            url: "/Home/DeleteFromWishlist",
+            data: JSON.stringify({ ProductId: ProductId }),
+            success: function (result) {
+                if (parseInt(result) > 0) {
+                    $("#strMessage").text("Item removed from wishlist.");
+                    $("#strMessage").addClass("alert-success");
+                    $("#strMessage").fadeOut(3000);
+                }
+                else {
+                    $("#strMessage").text("Can't removed from wishlist.");
+                    $("#strMessage").addClass("alert-danger");
+                    $("#strMessage").fadeOut(3000);
+                }
+                FillUserWishList();
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+    function AddToCart(ProductId) {
+        if ($('#SC' + ProductId).hasClass('text-warning')) {
+            $('#SC' + ProductId).removeClass('text-warning');
+            $('#SC' + ProductId).addClass('text-dark');
+        }
+        else {
+            $('#SC' + ProductId).removeClass('text-dark');
+            $('#SC' + ProductId).addClass('text-warning');
+        }
+
+        $("#strMessage").text('');
+        $("#strMessage").fadeIn();
+        $("#strMessage").removeClass();
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            url: "/Home/AddToCart",
+            data: '{ProductId: "' + ProductId + '" }',
+            success: function (result) {
+                if (parseInt(result) > 0) {
+                    $("#strMessage").text($("#Name").val() + " successfully created.");
+                    $("#strMessage").addClass("alert-success");
+                    $("#strMessage").fadeOut(3000);
+                }
+                else {
+                    $("#strMessage").text($("#Name").val() + " can't created.");
+                    $("#strMessage").addClass("alert-danger");
+                    $("#strMessage").fadeOut(3000);
+                }
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+</script>

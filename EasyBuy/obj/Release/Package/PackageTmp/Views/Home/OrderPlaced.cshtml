@@ -1,0 +1,40 @@
+﻿@model EasyBuy.Models.mdlUserOrderlist
+@{
+    ViewBag.Title = "BillingAddress";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<div class="row bg-light p-2">
+    <div class="col-md-12">
+        <div class="card shadow">
+            <div class="card-header bg-white">
+                <h5><strong>Your Order Is Placed</strong></h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mt-1"><strong>Hi</strong> @Model.SName,</div>
+                        <div class="mt-2"><p>We have received your order.</p></div>
+                        <div class="mt-5"><strong>Order No.: </strong>@Model.OrderNo </div>
+                        <div class="mt-1"><strong>Order Placed on: </strong>@Model.OrderDate </div>
+                        <div class="mt-1"><strong>Order Status: </strong>@Model.OrderStatus </div>
+                        <div class="mt-4">
+                            <a href="/Home/UserOrderDetail/@Model.Id" class="btn btn-dark text-white">Order Details</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">Shipping Address</div>
+                            <div class="card-body ml-3">
+                                <div class="row">@Model.SName (@Model.MobileNo)</div>
+                                <div class="row">@Model.AddressLine1</div>
+                                <div class="row">@Model.AddressLine2</div>
+                                <div class="row">@Model.City @Model.Province @Model.PostalCode</div>
+                                <div class="row">@Model.Country</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

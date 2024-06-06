@@ -1,0 +1,165 @@
+﻿@model PlantDelightPortal.Areas.Admin.Models.mdlDashboardAdmin
+
+<div class="card">
+    <div class="card-body">
+        <div class="row col-md-12 mt-3 mb-5">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-3">
+                <a href="@Url.Action("rptOrder","rptOrder",new { Area = "Admin", Flag = "Today" })" role="button">
+                    <div class="card shadow bg-white text-center text-info">
+                        <div class="border-bottom-0 pl-4 pr-4">
+                            <div class="card shadow card-header">
+                                <strong>Order - Today</strong>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <strong>@Model.OrderToday</strong>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-3">
+                <a href="@Url.Action("rptOrder","rptOrder",new { Area = "Admin", Flag = "Monthly" })" role="button">
+                    <div class="card shadow bg-white text-center text-info">
+                        <div class="border-bottom-0 pl-4 pr-4">
+                            <div class="card shadow card-header">
+                                <strong>Order - This Month</strong>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <strong>@Model.OrderThisMonth</strong>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-3">
+                <a href="@Url.Action("rptOrder","rptOrder",new { Area = "Admin", Flag = "Yearly" })" role="button">
+                    <div class="card shadow bg-white text-center text-info">
+                        <div class="border-bottom-0 pl-4 pr-4">
+                            <div class="card shadow card-header">
+                                <strong>Order - This Year</strong>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <strong>@Model.OrderThisYear</strong>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row col-md-12 mt-5 mb-5">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-3">
+                <a href="@Url.Action("rptSales","rptSales",new { Area = "Admin", Flag = "Today" })" role="button">
+                    <div class="card shadow bg-white text-center text-success">
+                        <div class="border-bottom-0 pl-4 pr-4">
+                            <div class="card shadow card-header">
+                                <strong>Sales - Today</strong>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <strong>$ @Model.SalesToday</strong>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-3">
+                <a href="@Url.Action("rptSales","rptSales",new { Area = "Admin", Flag = "Monthly" })" role="button">
+                    <div class="card shadow bg-white text-center text-success">
+                        <div class="border-bottom-0 pl-4 pr-4">
+                            <div class="card shadow card-header">
+                                <strong>Sales - This Month</strong>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <strong>$ @Model.SalesThisMonth</strong>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-3">
+                <a href="@Url.Action("rptSales","rptSales",new { Area = "Admin", Flag = "Yearly" })" role="button">
+                    <div class="card shadow bg-white text-center text-success">
+                        <div class="border-bottom-0 pl-4 pr-4">
+                            <div class="card shadow card-header">
+                                <strong>Sales - This Year</strong>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <strong>$ @Model.SalesThisYear</strong>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row col-md-12 mt-5 mb-5">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-3">
+                <a href="@Url.Action("rptUser","rptUser",new { Area = "Admin", Flag = "Today" })" role="button">
+                    <div class="card shadow bg-white text-center text-secondary">
+                        <div class="border-bottom-0 pl-4 pr-4">
+                            <div class="card shadow card-header">
+                                <strong>User - Today</strong>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <strong>@Model.UserToday</strong>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-3">
+                <a href="@Url.Action("rptUser","rptUser",new { Area = "Admin", Flag = "Monthly" })" role="button">
+                    <div class="card shadow bg-white text-center text-secondary">
+                        <div class="border-bottom-0 pl-4 pr-4">
+                            <div class="card shadow card-header">
+                                <strong>User - This Month</strong>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <strong>@Model.UserThisMonth</strong>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-3">
+                <a href="@Url.Action("rptUser","rptUser",new { Area = "Admin", Flag = "Yearly" })" role="button">
+                    <div class="card shadow bg-white text-center text-secondary">
+                        <div class="border-bottom-0 pl-4 pr-4">
+                            <div class="card shadow card-header">
+                                <strong>User - This Year</strong>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <strong>@Model.UserThisYear</strong>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

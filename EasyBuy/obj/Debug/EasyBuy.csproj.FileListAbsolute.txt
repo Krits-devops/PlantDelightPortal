@@ -1,0 +1,380 @@
+E:\EasyBuy\EasyBuy\EasyBuy\bin\EasyBuy.dll.config
+E:\EasyBuy\EasyBuy\EasyBuy\bin\EasyBuy.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\EasyBuy.pdb
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\csc.exe
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\csc.exe.config
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\csc.rsp
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\csi.exe
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\csi.exe.config
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\csi.rsp
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.Managed.Core.targets
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.AppContext.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Collections.Immutable.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Console.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.IO.Compression.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.IO.FileSystem.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.IO.Pipes.AccessControl.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.IO.Pipes.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Reflection.Metadata.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Security.AccessControl.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Security.Claims.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Security.Principal.Windows.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Text.Encoding.CodePages.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.ValueTuple.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Xml.ReaderWriter.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Xml.XmlDocument.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Xml.XPath.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Xml.XPath.XDocument.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\vbc.exe
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\vbc.exe.config
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\vbc.rsp
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\VBCSCompiler.exe
+E:\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\VBCSCompiler.exe.config
+E:\EasyBuy\EasyBuy\EasyBuy\bin\Antlr3.Runtime.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\Microsoft.Web.Infrastructure.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\Newtonsoft.Json.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.Helpers.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.Mvc.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.Optimization.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.Razor.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.WebPages.Deployment.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.WebPages.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.WebPages.Razor.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\WebGrease.dll
+E:\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.Helpers.xml
+E:\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.Mvc.xml
+E:\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.Optimization.xml
+E:\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.Razor.xml
+E:\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.WebPages.xml
+E:\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.WebPages.Deployment.xml
+E:\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.WebPages.Razor.xml
+E:\EasyBuy\EasyBuy\EasyBuy\bin\Newtonsoft.Json.xml
+E:\EasyBuy\EasyBuy\EasyBuy\bin\Antlr3.Runtime.pdb
+E:\EasyBuy\EasyBuy\EasyBuy\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\EasyBuy\EasyBuy\EasyBuy\obj\Debug\EasyBuy.csprojAssemblyReference.cache
+E:\EasyBuy\EasyBuy\EasyBuy\obj\Debug\EasyBuy.csproj.CoreCompileInputs.cache
+E:\EasyBuy\EasyBuy\EasyBuy\obj\Debug\EasyBuy.csproj.CopyComplete
+E:\EasyBuy\EasyBuy\EasyBuy\obj\Debug\EasyBuy.dll
+E:\EasyBuy\EasyBuy\EasyBuy\obj\Debug\EasyBuy.pdb
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\EasyBuy.dll.config
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\EasyBuy.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\EasyBuy.pdb
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\csc.exe
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\csc.exe.config
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\csc.rsp
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\csi.exe
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\csi.exe.config
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\csi.rsp
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.Managed.Core.targets
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.AppContext.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Collections.Immutable.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Console.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.IO.Compression.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.IO.FileSystem.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.IO.Pipes.AccessControl.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.IO.Pipes.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Reflection.Metadata.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Security.AccessControl.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Security.Claims.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Security.Principal.Windows.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Text.Encoding.CodePages.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.ValueTuple.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Xml.ReaderWriter.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Xml.XmlDocument.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Xml.XPath.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\System.Xml.XPath.XDocument.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\vbc.exe
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\vbc.exe.config
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\vbc.rsp
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\VBCSCompiler.exe
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\roslyn\VBCSCompiler.exe.config
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\Antlr3.Runtime.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\Microsoft.Web.Infrastructure.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\Newtonsoft.Json.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.Helpers.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.Mvc.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.Optimization.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.Razor.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.WebPages.Deployment.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.WebPages.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.WebPages.Razor.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\WebGrease.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.Helpers.xml
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.Mvc.xml
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.Optimization.xml
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.Razor.xml
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.WebPages.xml
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.WebPages.Deployment.xml
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\System.Web.WebPages.Razor.xml
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\Newtonsoft.Json.xml
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\Antlr3.Runtime.pdb
+E:\Project\EasyBuy\EasyBuy\EasyBuy\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Project\EasyBuy\EasyBuy\EasyBuy\obj\Debug\EasyBuy.csprojAssemblyReference.cache
+E:\Project\EasyBuy\EasyBuy\EasyBuy\obj\Debug\EasyBuy.csproj.CoreCompileInputs.cache
+E:\Project\EasyBuy\EasyBuy\EasyBuy\obj\Debug\EasyBuy.csproj.CopyComplete
+E:\Project\EasyBuy\EasyBuy\EasyBuy\obj\Debug\EasyBuy.dll
+E:\Project\EasyBuy\EasyBuy\EasyBuy\obj\Debug\EasyBuy.pdb
+E:\EasyBuy\EasyBuy\bin\EasyBuy.dll.config
+E:\EasyBuy\EasyBuy\bin\EasyBuy.dll
+E:\EasyBuy\EasyBuy\bin\EasyBuy.pdb
+E:\EasyBuy\EasyBuy\bin\roslyn\csc.exe
+E:\EasyBuy\EasyBuy\bin\roslyn\csc.exe.config
+E:\EasyBuy\EasyBuy\bin\roslyn\csc.rsp
+E:\EasyBuy\EasyBuy\bin\roslyn\csi.exe
+E:\EasyBuy\EasyBuy\bin\roslyn\csi.exe.config
+E:\EasyBuy\EasyBuy\bin\roslyn\csi.rsp
+E:\EasyBuy\EasyBuy\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\EasyBuy\EasyBuy\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\Microsoft.Managed.Core.targets
+E:\EasyBuy\EasyBuy\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\EasyBuy\EasyBuy\bin\roslyn\System.AppContext.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.Collections.Immutable.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.Console.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.IO.Compression.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.IO.FileSystem.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.IO.Pipes.AccessControl.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.IO.Pipes.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.Reflection.Metadata.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.Security.AccessControl.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.Security.Claims.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.Security.Principal.Windows.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.Text.Encoding.CodePages.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.ValueTuple.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.Xml.ReaderWriter.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.Xml.XmlDocument.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.Xml.XPath.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\System.Xml.XPath.XDocument.dll
+E:\EasyBuy\EasyBuy\bin\roslyn\vbc.exe
+E:\EasyBuy\EasyBuy\bin\roslyn\vbc.exe.config
+E:\EasyBuy\EasyBuy\bin\roslyn\vbc.rsp
+E:\EasyBuy\EasyBuy\bin\roslyn\VBCSCompiler.exe
+E:\EasyBuy\EasyBuy\bin\roslyn\VBCSCompiler.exe.config
+E:\EasyBuy\EasyBuy\bin\Antlr3.Runtime.dll
+E:\EasyBuy\EasyBuy\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\EasyBuy\EasyBuy\bin\Microsoft.Web.Infrastructure.dll
+E:\EasyBuy\EasyBuy\bin\Newtonsoft.Json.dll
+E:\EasyBuy\EasyBuy\bin\System.Web.Helpers.dll
+E:\EasyBuy\EasyBuy\bin\System.Web.Mvc.dll
+E:\EasyBuy\EasyBuy\bin\System.Web.Optimization.dll
+E:\EasyBuy\EasyBuy\bin\System.Web.Razor.dll
+E:\EasyBuy\EasyBuy\bin\System.Web.WebPages.Deployment.dll
+E:\EasyBuy\EasyBuy\bin\System.Web.WebPages.dll
+E:\EasyBuy\EasyBuy\bin\System.Web.WebPages.Razor.dll
+E:\EasyBuy\EasyBuy\bin\WebGrease.dll
+E:\EasyBuy\EasyBuy\bin\System.Web.Helpers.xml
+E:\EasyBuy\EasyBuy\bin\System.Web.Mvc.xml
+E:\EasyBuy\EasyBuy\bin\System.Web.Optimization.xml
+E:\EasyBuy\EasyBuy\bin\System.Web.Razor.xml
+E:\EasyBuy\EasyBuy\bin\System.Web.WebPages.xml
+E:\EasyBuy\EasyBuy\bin\System.Web.WebPages.Deployment.xml
+E:\EasyBuy\EasyBuy\bin\System.Web.WebPages.Razor.xml
+E:\EasyBuy\EasyBuy\bin\Newtonsoft.Json.xml
+E:\EasyBuy\EasyBuy\bin\Antlr3.Runtime.pdb
+E:\EasyBuy\EasyBuy\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\EasyBuy\EasyBuy\obj\Debug\EasyBuy.csproj.CoreCompileInputs.cache
+E:\EasyBuy\EasyBuy\obj\Debug\EasyBuy.csproj.CopyComplete
+E:\EasyBuy\EasyBuy\obj\Debug\EasyBuy.dll
+E:\EasyBuy\EasyBuy\obj\Debug\EasyBuy.pdb
+E:\EasyBuy\EasyBuy\obj\Debug\EasyBuy.csprojAssemblyReference.cache
+E:\Project\PlantDelightPortal\EasyBuy\bin\EasyBuy.dll.config
+E:\Project\PlantDelightPortal\EasyBuy\bin\EasyBuy.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\EasyBuy.pdb
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\csc.exe
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\csc.exe.config
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\csc.rsp
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\csi.exe
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\csi.exe.config
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\csi.rsp
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.Managed.Core.targets
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.AppContext.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Collections.Immutable.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Console.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.IO.Compression.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.IO.FileSystem.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.IO.Pipes.AccessControl.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.IO.Pipes.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Reflection.Metadata.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Security.AccessControl.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Security.Claims.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Security.Principal.Windows.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Text.Encoding.CodePages.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.ValueTuple.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Xml.ReaderWriter.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Xml.XmlDocument.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Xml.XPath.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Xml.XPath.XDocument.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\vbc.exe
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\vbc.exe.config
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\vbc.rsp
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\VBCSCompiler.exe
+E:\Project\PlantDelightPortal\EasyBuy\bin\roslyn\VBCSCompiler.exe.config
+E:\Project\PlantDelightPortal\EasyBuy\bin\Antlr3.Runtime.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\Microsoft.Web.Infrastructure.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\Newtonsoft.Json.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\System.Web.Helpers.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\System.Web.Mvc.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\System.Web.Optimization.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\System.Web.Razor.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\System.Web.WebPages.Deployment.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\System.Web.WebPages.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\System.Web.WebPages.Razor.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\WebGrease.dll
+E:\Project\PlantDelightPortal\EasyBuy\bin\System.Web.Helpers.xml
+E:\Project\PlantDelightPortal\EasyBuy\bin\System.Web.Mvc.xml
+E:\Project\PlantDelightPortal\EasyBuy\bin\System.Web.Optimization.xml
+E:\Project\PlantDelightPortal\EasyBuy\bin\System.Web.Razor.xml
+E:\Project\PlantDelightPortal\EasyBuy\bin\System.Web.WebPages.xml
+E:\Project\PlantDelightPortal\EasyBuy\bin\System.Web.WebPages.Deployment.xml
+E:\Project\PlantDelightPortal\EasyBuy\bin\System.Web.WebPages.Razor.xml
+E:\Project\PlantDelightPortal\EasyBuy\bin\Newtonsoft.Json.xml
+E:\Project\PlantDelightPortal\EasyBuy\bin\Antlr3.Runtime.pdb
+E:\Project\PlantDelightPortal\EasyBuy\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Project\PlantDelightPortal\EasyBuy\obj\Debug\EasyBuy.csproj.CoreCompileInputs.cache
+E:\Project\PlantDelightPortal\EasyBuy\obj\Debug\EasyBuy.csproj.CopyComplete
+E:\Project\PlantDelightPortal\EasyBuy\obj\Debug\EasyBuy.dll
+E:\Project\PlantDelightPortal\EasyBuy\obj\Debug\EasyBuy.pdb
+E:\Project\PlantDelightPortal\EasyBuy\obj\Debug\EasyBuy.csprojAssemblyReference.cache
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\EasyBuy.dll.config
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\EasyBuy.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\EasyBuy.pdb
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\csc.exe
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\csc.exe.config
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\csc.rsp
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\csi.exe
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\csi.exe.config
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\csi.rsp
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.AppContext.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Console.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.IO.Compression.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.IO.Pipes.AccessControl.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.IO.Pipes.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Security.Claims.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.ValueTuple.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Xml.XPath.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\vbc.exe
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\vbc.exe.config
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\vbc.rsp
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\VBCSCompiler.exe
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\Antlr3.Runtime.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\Newtonsoft.Json.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\System.Web.Helpers.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\System.Web.Mvc.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\System.Web.Optimization.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\System.Web.Razor.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\System.Web.WebPages.Deployment.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\System.Web.WebPages.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\System.Web.WebPages.Razor.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\WebGrease.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\System.Web.Helpers.xml
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\System.Web.Mvc.xml
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\System.Web.Optimization.xml
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\System.Web.Razor.xml
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\System.Web.WebPages.xml
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\System.Web.WebPages.Deployment.xml
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\System.Web.WebPages.Razor.xml
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\Newtonsoft.Json.xml
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\Antlr3.Runtime.pdb
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\obj\Debug\EasyBuy.csproj.AssemblyReference.cache
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\obj\Debug\EasyBuy.csproj.CoreCompileInputs.cache
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\obj\Debug\EasyBuy.csproj.Up2Date
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\obj\Debug\EasyBuy.dll
+C:\Users\HP\OneDrive - Conestoga College\Desktop\Plantdelight portal\BackUP\Project\PlantDelightPortal\EasyBuy\obj\Debug\EasyBuy.pdb

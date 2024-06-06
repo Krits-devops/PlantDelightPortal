@@ -1,0 +1,242 @@
+﻿@model EasyBuy.Models.mdlProductDetail
+@{
+    ViewBag.Title = "ProductDetail";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<div class="row bg-light p-2 bg-white">
+    <div class="col-md-2 text-center">
+        <div class="card card-body shadow" style="height:400px;">
+            <ul class="list-unstyled">
+                @for (int i = 0; i < Model.lstProductImage.Count; i++)
+                {
+                    if (i <= 2)
+                    {
+                        <li class="border m-2"><img src="@Model.lstProductImage[i].ImagePath" style="height:100px;width:100px;" role="button" onclick="ChangeImage(this)"></li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-body shadow" style="height:400px;">
+            <center>
+                @if (Model.lstProductImage.Count >= 1)
+                {
+                    <img id="ImgMain" src="@Model.lstProductImage[0].ImagePath" style="max-height:300px;max-width:300px;">
+                }
+            </center>
+        </div>
+    </div>
+    <div class="col-md-6 pl-5">
+        <div class="mt-3"><h5><strong>@Model.Name</strong> (@Model.StkQty)</h5></div>
+        <div class="mt-2"><h6>@Model.Description</h6></div>
+        <hr>
+        <table>
+            @foreach (var Attribute in Model.lstProductAttribute)
+            {
+                <tr>
+                    <td><h6><strong>@Attribute.AttributeName :</strong></h6></td>
+                    <td class="pl-3"><h6>@Attribute.AttributeValue</h6></td>
+                </tr>
+            }
+        </table>
+        <div class="mt-2"><h4><strong>$ @Model.Price</strong></h4></div>
+        @for (int i = 0; i < 5; i++)
+        {
+            if (Model.Rating > i && Model.Rating < i + 1)
+            {
+                <i class="fa fa-star-half text-warning"></i>
+            }
+            else if (Model.Rating >= i + 1)
+            {
+                <i class="fa fa-star text-warning checked"></i>
+            }
+        }
+        <div class="mt-3">
+            <a class="btn btn-dark" style="width:100px" onclick="AddToCart('@Model.Id');">
+                <i id="ICart" class="fa fa-shopping-cart"></i>
+            </a>
+            <a class="btn btn-dark ml-2" style="width:100px" onclick="AddToWishlist('@Model.Id');">
+                <i id="IWishList" class="fa fa-heart"></i>
+            </a>
+        </div>
+        @if (Model.lstProductRatingReview.Count > 0)
+        {
+            <div class="card mt-3">
+                <div class="card-header">
+                    <div class="row ml-2">
+                        <h5> Ratings & Reviews &nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @foreach (var Attribute in Model.lstProductRatingReview)
+                    {
+                        <div class="row ml-3">
+                            <h6><strong>@Attribute.UserName</strong></h6>
+                        </div>
+                        <div class="row  ml-3">
+                            @for (int i = 0; i < 5; i++)
+                            {
+                                if (Attribute.Rating > i && Attribute.Rating < i + 1)
+                                {
+                                    <i class="fa fa-star-half text-warning"></i>
+                                }
+                                else if (Attribute.Rating >= i + 1)
+                                {
+                                    <i class="fa fa-star text-warning checked"></i>
+                                }
+                            }
+                        </div>
+                        <div class="row mt-2 ml-3">
+                            <h6>@Attribute.Review</h6>
+                        </div>
+                        <hr />
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="row bg-light p-2 bg-white">
+    <div class="col-md-12">
+        <div class="card shadow">
+            <div class="card-header bg-white">
+                <h4><strong>Related Product</strong></h4>
+            </div>
+            <div class="card-body text-center p-2">
+                <ul id="UlRelatedProduct" class="list-inline w-responsive">
+                    @for (int i = 0; i < Model.lstRelatedProduct.Count; i++)
+                    {
+                        if (i <= 4)
+                        {
+                            <li class="border m-2 list-inline-item">
+                                <a class="img-responsive" href="@Url.Action("ProductDetail","Home",new { Id = Model.lstRelatedProduct[i].Id})" role="button">
+                                    <img src="@Model.lstRelatedProduct[i].ImagePath" style="height:200px;width:200px;">
+                                </a>
+                                <h5 class="title">@Model.lstRelatedProduct[i].Name </h5>
+                                <h6 class="title">$ @Model.lstRelatedProduct[i].Price </h6>
+                                <a class="btn btn-dark mb-2" style="width:80px" onclick="AddToCart('@Model.lstRelatedProduct[i].Id');">
+                                    @if (Model.lstRelatedProduct[i].InCart == true)
+                                    {
+                                        <i id="SC_@Model.lstRelatedProduct[i].Id" class="fa fa-shopping-cart text-warning"></i>
+                                    }
+                                    else
+                                    {
+                                        <i id="SC_@Model.lstRelatedProduct[i].Id" class="fa fa-shopping-cart"></i>
+                                    }
+                                </a>
+                                <a class="btn btn-dark ml-2 mb-2" style="width:80px" onclick="AddToWishlist('@Model.lstRelatedProduct[i].Id');">
+                                    @if (Model.lstRelatedProduct[i].InWishList == true)
+                                    {
+                                        <i id="WL_@Model.lstRelatedProduct[i].Id" class="fa fa-heart text-warning"></i>
+                                    }
+                                    else
+                                    {
+                                        <i id="WL_@Model.lstRelatedProduct[i].Id" class="fa fa-heart"></i>
+                                    }
+                                </a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if ('@Model.InCart' == 'True') {
+            $('#ICart').addClass('text-warning');
+        }
+        if ('@Model.InWishList' == 'True') {
+            $('#IWishList').addClass('text-warning');
+        }
+    });
+
+    function ChangeImage(input) {
+        $('#ImgMain').attr('src', input.src)
+    }
+
+    function AddToCart(ProductId) {
+        if ($('#ICart').hasClass('text-warning')) {
+            $('#ICart').removeClass('text-warning');
+        }
+        else {
+            $('#ICart').addClass('text-warning');
+        }
+
+        if ($('#SC_' + ProductId).hasClass('text-warning')) {
+            $('#SC_' + ProductId).removeClass('text-warning');
+        }
+        else {
+            $('#SC_' + ProductId).addClass('text-warning');
+        }
+
+        $("#strMessage").text('');
+        $("#strMessage").fadeIn();
+        $("#strMessage").removeClass();
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            url: "/Home/AddToCart",
+            data: '{ProductId: "' + ProductId + '" }',
+            success: function (result) {
+                if (parseInt(result) > 0) {
+                    $("#strMessage").text($("#Name").val() + " successfully created.");
+                    $("#strMessage").addClass("alert-success");
+                    $("#strMessage").fadeOut(3000);
+                }
+                else {
+                    $("#strMessage").text($("#Name").val() + " can't created.");
+                    $("#strMessage").addClass("alert-danger");
+                    $("#strMessage").fadeOut(3000);
+                }
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+    function AddToWishlist(ProductId) {
+        if ($('#IWishList').hasClass('text-warning')) {
+            $('#IWishList').removeClass('text-warning');
+        }
+        else {
+            $('#IWishList').addClass('text-warning');
+        }
+
+        if ($('#WL_' + ProductId).hasClass('text-warning')) {
+            $('#WL_' + ProductId).removeClass('text-warning');
+        }
+        else {
+            $('#WL_' + ProductId).addClass('text-warning');
+        }
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            url: "/Home/AddToWishlist",
+            data: '{ProductId: "' + ProductId + '" }',
+            success: function (result) {
+                if (parseInt(result) > 0) {
+                    $("#strMessage").text("added successfully.");
+                    $("#strMessage").addClass("alert-success");
+                    $("#strMessage").fadeOut(3000);
+                }
+                else {
+                    $("#strMessage").text(" can't created.");
+                    $("#strMessage").addClass("alert-danger");
+                    $("#strMessage").fadeOut(3000);
+                }
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+</script>

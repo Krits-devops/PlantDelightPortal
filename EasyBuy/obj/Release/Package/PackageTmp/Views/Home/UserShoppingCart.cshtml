@@ -1,0 +1,227 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card m-3">
+                <table id="tblShoppingCart" class="table table-hover">
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card m-3">
+                <div class="card-body">
+                    <h5 class="mb-3">Price Detail</h5>
+                    <hr class="mb-3" />
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                            <div class="col-sm-6">
+                                Subtotal
+                            </div>
+                            <div class="col-sm-6">
+                                <span id="lblSubTotal"></span>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                            <div class="col-sm-6">
+                                Tax Amount(13%)
+                            </div>
+                            <div class="col-sm-6">
+                                <span id="lblTax"></span>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                            <div class="col-sm-6">
+                                <strong>Total</strong>
+                            </div>
+                            <div class="col-sm-6">
+                                <strong><span id="lblTotal"></span></strong>
+                            </div>
+                        </li>
+                    </ul>
+                    <a onclick="ProceedToPlaceOrder();" class="btn btn-success btn-block text-white"><b>Proceed to Place Order</b></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var ListCart = [];
+    var CartCount = 0;
+
+    $(document).ready(function () {
+        FillCart();
+    });
+
+    function FillCart() {
+        $("#tblShoppingCart tbody").empty();
+        ListCart = [];
+
+        $.ajax({
+            url: "/Home/FillCart",
+            typr: "POST",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            success: function (response) {
+
+                CartCount = response.RecordCount;
+                var html = '';
+                html += '<tr>';
+                html += '<td colspan="5" class="bg-white"><h3 class="product-name"><strong>Shopping Cart (';
+                html += response.RecordCount;
+                html += ')</strong></h3></td>';
+                html += '</tr>';
+
+                $.each(response.lstModel, function (key, Item) {
+
+                    var model = {
+                        "ProductId": Item.Id,
+                        "Price": Item.Price,
+                        "Qty": Item.Qty
+                    }
+                    ListCart.push(model);
+
+                    html += '<tr>';
+                    html += '<td style="width:15%">';
+                    html += '<a class="img-responsive" href="/Home/ProductDetail/' + Item.Id + '" role="button">';
+                    html += '<img src="' + Item.ImagePath + '" style="height:80px;width:80px;">';
+                    html += '</a>';
+                    html += '</td>';
+                    html += '<td style="width:45%">';
+                    html += '<h5>';
+                    html += '<strong>';
+                    html += Item.Name;
+                    html += '</strong> <small>(';
+                    html += Item.StkQty;
+                    html += ')</small></h5><h6>';
+                    html += Item.Description;
+                    html += '</h6>';
+                    for (var i = 0; i < 5; i++) {
+                        if (Item.Rating > i && Item.Rating < i + 1) {
+                            html += '<i class="fa fa-star-half text-warning"></i>';
+                        }
+                        else if (Item.Rating >= i + 1) {
+                            html += '<i class="fa fa-star text-warning checked"></i>';
+                        }
+                    }
+                    html += '</td>';
+                    html += '<td style="width:15%">';
+                    html += '<h5>';
+                    html += '<strong>$ ';
+                    html += Item.Price;
+                    html += '</strong>';
+                    html += '</h5>';
+                    html += '</td>';
+                    html += '<td style="width:15%">';
+                    html += '<input type="number" class="form-control text-center" value="' + Item.Qty + '" min="1" onchange="UpdateCartQty(this,\'' + Item.Id + '\');">';
+                    html += '</td>';
+                    html += '<td class="text-center" style="width:10%">';
+                    html += '<a onclick="DeleteFromCart(\'' + Item.Id + '\');" role="button">';
+                    html += '<i class="fa fa-trash text-danger"></i>';
+                    html += '</a>';
+                    html += '</td>';
+                    html += '</tr>';
+                });
+
+                html += '<tr>';
+                html += '<td class="bg-white"></td>';
+                html += '<td class="bg-white"></td>';
+                html += '<td class="bg-white"></td>';
+                html += '<td colspan="2" class="bg-white">';
+                html += '<a href="UserHome" class="btn btn-dark text-white"><i class="fa fa-shopping-cart mr-2"></i>Continue Shopping</a>';
+                html += '</td>';
+                html += '</tr>';
+
+                $("#tblShoppingCart tbody").append(html);
+                CalculateTotal();
+            },
+            error: function (response) {
+                alert(response.responseText)
+            }
+        });
+    }
+
+    function DeleteFromCart(ProductId) {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            url: "/Home/DeleteFromCart",
+            data: JSON.stringify({ ProductId: ProductId }),
+            success: function (result) {
+                if (parseInt(result) > 0) {
+                    $("#strMessage").text("Item removed from Cart.");
+                    $("#strMessage").addClass("alert-success");
+                    $("#strMessage").fadeOut(3000);
+                }
+                else {
+                    $("#strMessage").text("Can't removed from Cart.");
+                    $("#strMessage").addClass("alert-danger");
+                    $("#strMessage").fadeOut(3000);
+                }
+                FillCart();
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+    function UpdateCartQty(input, ProductId) {
+        var Qty = 0;
+
+        for (var i = 0; i < ListCart.length; i++) {
+            if (ListCart[i].ProductId == ProductId) {
+                ListCart[i].Qty = parseFloat(input.value);
+                Qty = parseFloat(input.value);
+            }
+        }
+        CalculateTotal();
+        UpdateUserCartQty(ProductId, Qty);
+    }
+
+    function CalculateTotal() {
+        var SubTotal = 0.00;
+        var Tax = 0.00;
+
+        for (var i = 0; i < ListCart.length; i++) {
+            SubTotal = parseFloat(SubTotal) + (parseFloat(ListCart[i].Qty) * parseFloat(ListCart[i].Price));
+        }
+
+        Tax = parseFloat(SubTotal) * 13 / 100;
+
+        $('#lblSubTotal').text('$ ' + SubTotal);
+
+        if (parseFloat(SubTotal) > 0) {
+            $('#lblTax').text('$ ' + parseFloat(Tax));
+            $('#lblTotal').text('$ ' + (parseFloat(SubTotal) + parseFloat(Tax)));
+        }
+        else {
+            $('#lblTax').text('$ 0.00');
+            $('#lblTotal').text('$ 0.00')
+        }
+    }
+
+    function UpdateUserCartQty(ProductId, Qty) {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            url: "/Home/UpdateUserCartQty",
+            data: JSON.stringify({ "ProductId": ProductId, "Qty": Qty }),
+            success: function (result) {
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+    function ProceedToPlaceOrder() {
+        window.location.href = "/Home/BillingAddress?C=" + CartCount + '&ST=' + $('#lblSubTotal').text() + '&S=' + $('#lblTax').text() + '&T=' + $('#lblTotal').text();
+    }
+</script>

@@ -1,0 +1,398 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.3/themes/hot-sneaks/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-2.1.3.js"></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+<div class="container-fluid m-0 p-0">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul id="ULCategoryMenu" class="navbar-nav mr-auto mt-2"></ul>
+            <form class="form-inline mr-5">
+                <input id="txtSearch" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <a id="btnSearch" class="btn btn-outline-warning my-2 my-sm-0" role="button">Search</a>
+            </form>
+        </div>
+    </nav>
+</div>
+
+<div class="container-fluid">
+    <div class="col-md-12 mt-3">
+        <div class="col-md-3 float-left">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Sort by</strong>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group border-0">
+                        <li class="list-group-item border-0"><i class="fa fa-arrow-circle-right text-dark"></i><a id="btnNewestFirst" role="button"><span class="text-dark ml-3">Newest First</span></aId></li>
+                        <li class="list-group-item border-0"><i class="fa fa-sort-amount-up text-dark"></i><a id="btnPriceLowToHigh" role="button"><span class="text-dark ml-3">Price - Low to High</span></a></li>
+                        <li class="list-group-item border-0"><i class="fa fa-sort-amount-down text-dark"></i><a id="btnPriceHighToLow" role="button"><span class="text-dark ml-3">Price - High to Low</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-header">
+                    <strong>Filter by</strong>
+                </div>
+                <div class="card-body">
+                    <div class="m-3 p-3 border">
+                        <div>
+                            <strong>Price Range: <label id="price" class="text-info"></label></strong>
+                        </div>
+                        <hr />
+                        <div id="mySlider" class="mt-3"></div>
+                    </div>
+                    <div class="m-3 p-3 border">
+                        <div class="row ml-3">
+                            <strong>Customer Ratings</strong>
+                        </div>
+                        <hr />
+                        <div class="row ml-3">
+                            <input type="checkbox" id="5" name="FilterRating" class="mt-1">
+                            <span class="ml-3">
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                            </span>
+                        </div>
+                        <div class="row ml-3 mt-1">
+                            <input type="checkbox" id="4" name="FilterRating" class="mt-1">
+                            <span class="ml-3">
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                            </span>
+                        </div>
+                        <div class="row ml-3 mt-1">
+                            <input type="checkbox" id="3" name="FilterRating" class="mt-1">
+                            <span class="ml-3">
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="m-3 p-3 border">
+                        <nav id="DynamicFilter" class="mw-100 bg-light">
+                        </nav>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a id="btnFilterApply" class="btn btn-dark btn-block text-white">Apply</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 float-right">
+            <div id="divProductList" class="row">
+            </div>
+        </div>
+    </div>
+    <div class="clearfix mt-3">
+        &nbsp;
+    </div>
+</div>
+
+<script type="text/javascript">
+    var ListCategory = [];
+    var ListSubCategory = [];
+    var SubCategoryId = "";
+    var SortBy = "";
+    var MinPrice, MaxPrice;
+    var FilterRating = "";
+    var DynamicFilter = "";
+
+    $('#btnSearch').on("click", function () {
+        var value = $('#txtSearch').val().toLowerCase();
+        $("#divProductList div").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+
+    function FillCategory() {
+        $.ajax({
+            url: "/Category/GetCategory",
+            type: "GET",
+            data: "json",
+            success: function (response) {
+                $.each(response, function (key, Item) {
+                    var model = {
+                        "Id": Item.Id,
+                        "Name": Item.Name
+                    }
+                    ListCategory.push(model);
+                });
+            },
+            error: function (response) {
+                alert(response.responseText)
+            }
+        });
+    }
+
+    function FillSubCategory() {
+        $.ajax({
+            url: "/SubCategory/GetSubCategory",
+            type: "GET",
+            data: "json",
+            success: function (response) {
+                $.each(response, function (key, Item) {
+                    var model = {
+                        "Id": Item.Id,
+                        "Name": Item.Name,
+                        "CategoryId": Item.CategoryId
+                    }
+                    ListSubCategory.push(model);
+                });
+
+                var html = "";
+
+                for (var i = 0; i < ListCategory.length; i++) {
+                    html += '<li class="nav-item dropdown ml-5">';
+                    html += '<a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+                    html += ListCategory[i].Name;
+                    html += '<b class="caret"></b>';
+                    html += '</a>';
+                    html += '<div class="dropdown-menu" aria-labelledby="navbarDropdown">';
+
+                    for (var j = 0; j < ListSubCategory.length; j++) {
+                        if (ListCategory[i].Id == ListSubCategory[j].CategoryId) {
+                            html += '<a href="/Home/ProductBySubCategory/' + ListSubCategory[j].Id + '" class="dropdown-item" Id="' + ListSubCategory[j].Id + '">';
+                            html += ListSubCategory[j].Name;
+                            html += '</a>';
+                        }
+                    }
+
+                    html += '</div>';
+                    html += '</li>';
+                }
+                $("#ULCategoryMenu").html(html);
+            },
+            error: function (response) {
+                alert(response.responseText)
+            }
+        });
+    }
+
+    function FilterProduct() {
+        $("#divProductList").empty();
+
+        //url: "/Product/GetProductBySubCategoryId?Id=" + SubCategoryId + "&SortBy=" + SortBy,
+        //    type: "GET",
+        //        contentType: "application/json;charset=UTF-8",
+        //            dataType: "json",
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            url: "/Product/GetProductBySubCategoryId",
+            data: JSON.stringify({ SubCategoryId: SubCategoryId, SortBy: SortBy, MinPrice: MinPrice, MaxPrice: MaxPrice, FilterRating: FilterRating, DynamicFilter: DynamicFilter}),
+            success: function (response) {
+                var html = "";
+
+                $.each(response, function (key, Item) {
+                    html += "<div class='col-md-3'>";
+                    html += "<div class='card card-sm card-product-grid'>";
+                    html += '<a class="img-wrap" href="/Home/ProductDetail/' + Item.Id + '" role="button">';
+                    html += "<img src='" + Item.ImagePath + "'>";
+                    html += "</a>";
+                    html += "<div class='card-body'>";
+                    html += "<h5 class='card-title'>" + Item.Name + "</h5>";
+                    html += "<h6 class='card-title'> $" + Item.Price + "</h6>";
+                    html += '<a class="btn btn-dark" style="width:80px" onclick="AddToCart(\'' + Item.Id + '\');">';
+                    if (Item.InCart == true)
+                        html += '<i id="SC' + Item.Id + '" class="fa fa-shopping-cart text-warning"></i>';
+                    else
+                        html += '<i id="SC' + Item.Id + '" class="fa fa-shopping-cart"></i>';
+                    html += "</a>";
+                    html += '<a class="btn btn-dark ml-2" style="width:80px" onclick="AddToWishlist(\'' + Item.Id + '\');">';
+                    if (Item.InWishList == true)
+                        html += '<i id="WL' + Item.Id + '" class="fa fa-heart text-warning"></i>';
+                    else
+                        html += '<i id="WL' + Item.Id + '" class="fa fa-heart"></i>';
+                    html += "</a>";
+                    html += "</div>";
+                    html += "</div>";
+                    html += "</div>";
+                });
+
+                $("#divProductList").html(html);
+            },
+            error: function (response) {
+                alert(response.responseText)
+            }
+        });
+    }
+
+    function AddToCart(ProductId) {
+        if ($('#SC' + ProductId).hasClass('text-warning')) {
+            $('#SC' + ProductId).removeClass('text-warning');
+        }
+        else {
+            $('#SC' + ProductId).addClass('text-warning');
+        }
+
+        $("#strMessage").text('');
+        $("#strMessage").fadeIn();
+        $("#strMessage").removeClass();
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            url: "/Home/AddToCart",
+            data: '{ProductId: "' + ProductId + '" }',
+            success: function (result) {
+                if (parseInt(result) > 0) {
+                    $("#strMessage").text($("#Name").val() + " successfully created.");
+                    $("#strMessage").addClass("alert-success");
+                    $("#strMessage").fadeOut(3000);
+                }
+                else {
+                    $("#strMessage").text($("#Name").val() + " can't created.");
+                    $("#strMessage").addClass("alert-danger");
+                    $("#strMessage").fadeOut(3000);
+                }
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+    function AddToWishlist(ProductId) {
+        if ($('#WL' + ProductId).hasClass('text-warning')) {
+            $('#WL' + ProductId).removeClass('text-warning');
+        }
+        else {
+            $('#WL' + ProductId).addClass('text-warning');
+        }
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            url: "/Home/AddToWishlist",
+            data: '{ProductId: "' + ProductId + '" }',
+            success: function (result) {
+                if (parseInt(result) > 0) {
+                    $("#strMessage").text("added successfully.");
+                    $("#strMessage").addClass("alert-success");
+                    $("#strMessage").fadeOut(3000);
+                }
+                else {
+                    $("#strMessage").text(" can't created.");
+                    $("#strMessage").addClass("alert-danger");
+                    $("#strMessage").fadeOut(3000);
+                }
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        SubCategoryId = '@ViewBag.SubCategoryId';
+        MinPrice = 0;
+        MaxPrice = 3000;
+        SortBy = 'Date';
+
+        FillDynamicFilter();
+        FillCategory();
+        FillSubCategory();
+        FilterProduct();
+
+        $("#mySlider").slider({
+            range: true,
+            min: 0,
+            max: 3000,
+            values: [0, 3000],
+            slide: function (event, ui) {
+                $("#price").text("$" + ui.values[0] + " - $" + ui.values[1]);
+            }
+        });
+
+        $("#price").text("$" + $("#mySlider").slider("values", 0) +
+            " - $" + $("#mySlider").slider("values", 1));
+    });
+
+    $('#btnNewestFirst').click(function () {
+        SortBy = 'Date';
+        FilterProduct();
+    });
+
+    $('#btnPriceLowToHigh').click(function () {
+        SortBy = 'PriceLowToHigh';
+        FilterProduct();
+    });
+
+    $('#btnPriceHighToLow').click(function () {
+        SortBy = 'PriceHighToLow';
+        FilterProduct();
+    });
+
+    $('#btnFilterApply').click(function () {
+        MinPrice = $("#mySlider").slider("values", 0);
+        MaxPrice = $("#mySlider").slider("values", 1);
+
+        var selected = new Array();
+        $('input[name="FilterRating"]:checked').each(function () {
+            selected.push($(this).attr('id'));
+        })
+        FilterRating = selected.join(',');
+
+        var selected = new Array();
+        $('input[name="DynamicFilter"]:checked').each(function () {
+            selected.push($(this).attr('id'));
+        })
+        DynamicFilter = selected.join('^');
+
+        FilterProduct();
+    });
+
+    function FillDynamicFilter() {
+        $("#DynamicFilter").empty();
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            url: "/Home/GetDynamicFilterBySubCategoryId",
+            data: JSON.stringify({ SubCategoryId: '@ViewBag.SubCategoryId' }),
+            success: function (response) {
+                var html = '';
+
+                for (var i = 0; i < response.lstFilter.length; i++) {
+                    html += '<ul class="list-unstyled components">';
+                    html += '<li>';
+                    html += '<div class="border w-100 bg-light p-2">';
+                    html += '<a href="#' + response.lstFilter[i].AttributeName + '" data-toggle="collapse" aria-expanded="false">';
+                    html += '<span class="text-dark"><strong>' + response.lstFilter[i].AttributeName + '</strong></span>';
+                    html += '</a>';
+                    html += '</div>';
+                    html += '<ul class="collapse list-unstyled show pl-1" id="' + response.lstFilter[i].AttributeName + '">';
+
+                    for (var j = 0; j < response.lstFilterValue.length; j++) {
+                        if (response.lstFilter[i].AttributeId == response.lstFilterValue[j].AttributeId) {
+                            html += '<li><input type="checkbox" name="DynamicFilter" id="' + response.lstFilterValue[j].AttributeId + '~' + response.lstFilterValue[j].AttributeValue + '" class="mt-1"><span class="ml-2">' + response.lstFilterValue[j].AttributeValue +'</span></li>';
+                        }
+                    }
+
+                    html += '</ul>';
+                    html += '</li>';
+                    html += '</ul>';
+                }
+                $("#DynamicFilter").html(html);
+            },
+            error: function (response) {
+                alert(response.responseText)
+            }
+        });
+    }
+</script>

@@ -1,0 +1,260 @@
+﻿@model EasyBuy.Models.mdlShipping
+@{
+    ViewBag.Title = "BillingAddress";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<div class="row bg-light p-2">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-white">
+                <h5><strong>Shipping Address</strong></h5>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", placeholder = "First name", maxlength = "100" })
+                        </div>
+                        <div class="col-md-6 form-group">
+                            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", placeholder = "Last name", maxlength = "100" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            @Html.TextBoxFor(model => model.AddressLine1, new { @class = "form-control", placeholder = "Address Line 1", maxlength = "100" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            @Html.TextBoxFor(model => model.AddressLine2, new { @class = "form-control", placeholder = "Address Line 2", maxlength = "100" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 form-group">
+                            @Html.DropDownListFor(m => m.CountryId, new SelectList(Model.lstCountry, "Id", "Name"), "-- Country --", new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-4 form-group">
+                            @Html.DropDownListFor(m => m.ProvinceId, new SelectList(Model.lstProvince, "Id", "Name"), "-- Province --", new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-4 form-group">
+                            @Html.DropDownListFor(m => m.CityId, new SelectList(Model.lstCity, "Id", "Name"), "-- City --", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            @Html.TextBoxFor(model => model.PostalCode, new { @class = "form-control", placeholder = "Postal Code", maxlength = "10" })
+                        </div>
+                        <div class="col-md-6 form-group">
+                            @Html.TextBoxFor(model => model.MobileNo, new { @class = "form-control", placeholder = "Mobile No.", maxlength = "10" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Email", maxlength = "100" })
+                        </div>
+                    </div>
+                    <div id="divMsg" class="p-2"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow">
+            <div class="card-header bg-white">
+                <h5><strong>Cart Summary (@Request.QueryString["C"])</strong></h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                        <div class="col-sm-6">
+                            Subtotal
+                        </div>
+                        <div class="col-sm-6">
+                            <span id="lblSubTotal">@Request.QueryString["ST"]</span>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                        <div class="col-sm-6">
+                            Tax Amount(13%)
+                        </div>
+                        <div class="col-sm-6">
+                            <span id="lblShipping">@Request.QueryString["S"]</span>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                        <div class="col-sm-6">
+                            <strong>Total</strong>
+                        </div>
+                        <div class="col-sm-6">
+                            <strong><span id="lblTotal">@Request.QueryString["T"]</span></strong>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <a href="UserHome" class="btn btn-dark text-white w-100"><i class="fa fa-shopping-cart mr-2"></i>Continue Shopping</a>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <a id="btnPlaceOrder" class="btn btn-success text-white w-100"><i class="fa fa-arrow-right mr-2"></i>Place Order</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#CountryId").change(function () {
+            if ($("#CountryId").val() != null && $("#CountryId").val() != "") {
+                var CountryId = $("#CountryId").val();
+
+                $.ajax({
+                    url: "/Province/ProvinceByCountryId",
+                    data: JSON.stringify({ CountryId: CountryId }),
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        $("#ProvinceId").empty();
+                        $("#ProvinceId").append("<option value=''>-- Province -- </option>");
+                        $.each(data, function (index, row) {
+                            $("#ProvinceId").append("<option value='" + row.Id + "'>" + row.Name + "</option>")
+                        });
+                    },
+                    error: function (response) {
+                        alert(response.responseText)
+                    }
+                });
+            }
+        });
+
+        $("#ProvinceId").change(function () {
+            if ($("#ProvinceId").val() != null && $("#ProvinceId").val() != "") {
+                var ProvinceId = $("#ProvinceId").val();
+
+                $.ajax({
+                    url: "/City/CityByProvinceId",
+                    data: JSON.stringify({ ProvinceId: ProvinceId }),
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        $("#CityId").empty();
+                        $("#CityId").append("<option value=''>-- City -- </option>");
+                        $.each(data, function (index, row) {
+                            $("#CityId").append("<option value='" + row.Id + "'>" + row.Name + "</option>")
+                        });
+                    },
+                    error: function (response) {
+                        alert(response.responseText)
+                    }
+                });
+            }
+        });
+        $("#txtFirstName").focus();
+    });
+
+    function Validate() {
+        if ($("#FirstName").val() == "") {
+            $("#divMsg").text("Please enter first name.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+        if ($("#LastName").val() == "") {
+            $("#divMsg").text("Please enter last name.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+        if ($("#AddressLine1").val() == "") {
+            $("#divMsg").text("Please enter Address Line 1.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+        if ($("#AddressLine2").val() == "") {
+            $("#divMsg").text("Please enter Address Line 2.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+        if ($("#CountryId").val() == "") {
+            $("#divMsg").text("Please select Country.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+        if ($("#ProvinceId").val() == "") {
+            $("#divMsg").text("Please select Province.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+        if ($("#CityID").val() == "") {
+            $("#divMsg").text("Please select City.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+        if ($("#txtPostalCode").val() == "") {
+            $("#divMsg").text("Please enter Postal Code.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+        if ($("#txtMobileNo").val() == "") {
+            $("#divMsg").text("Please enter Mobile No.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+        if ($("#txtEmail").val() == "") {
+            $("#divMsg").text("Please enter Email.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+        return true;
+    }
+
+    $("#btnPlaceOrder").click(function () {
+        if (Validate()) {
+            $("#strMessage").text('');
+            $("#strMessage").fadeIn();
+            $("#strMessage").removeClass();
+
+            var model = {
+                FirstName: $("#FirstName").val(),
+                LastName: $("#LastName").val(),
+                AddressLine1: $("#AddressLine1").val(),
+                AddressLine2: $("#AddressLine2").val(),
+                CityId: $("#CityId").val(),
+                PostalCode: $("#PostalCode").val(),
+                MobileNo: $("#MobileNo").val(),
+                Email: $("#Email").val()
+            }
+
+            $.ajax({
+                url: "/Home/PlaceOrder",
+                data: JSON.stringify(model),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    if (parseInt(result.ResultCount) > 0) {
+                        clearControl();
+                        window.location.href = "/Home/OrderPlaced/" + result.OrderId;
+                    }
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+    });
+
+    function clearControl() {
+        $("#divMsg").text('');
+        $("#txtFirstName").val('');
+        $("#txtLastName").val('');
+        $("#txtAddressLine1").val('');
+        $("#txtAddressLine2").val('');
+        $("#txtCityName").val('');
+        $("#txtPostalCode").val('');
+        $("#txtMobileNo").val('');
+        $("#txtEmail").val('');
+    }
+</script>

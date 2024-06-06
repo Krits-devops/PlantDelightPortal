@@ -1,0 +1,549 @@
+﻿@model PlantDelightPortal.Models.mdlLayout
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PlantDelightPortal</title>
+    <link href="~/Content/fontawesome-all.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/ui.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="~/Scripts/umd/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/PlantDelightPortal.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark m-0 p-2" style="background-color:#212529">
+        <a class="nav-item nav-link mt-2">
+            <span class="text-white h4">
+                <i class="fa fa-shopping-bag text-warning"></i>
+                PlantDelightPortal<small>.com</small>
+            </span>
+        </a>
+        <div class="collapse navbar-collapse">
+            <div class="widget-header ml-auto mr-4">
+                <a class="widget-view text-center">
+                    <div class="icon-area">
+                        <i class="fa fa-heart"></i>
+                    </div>
+                    <small class="text">Wish List</small>
+                </a>
+            </div>
+            <div class="widget-header mr-4">
+                <a class="widget-view text-center">
+                    <div class="icon-area">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                    <small class="text"> Cart </small>
+                </a>
+            </div>
+            <div class="widget-header mr-4">
+                <a id="lnkSignUp" class="widget-view text-center" data-toggle="modal" data-target="#mdlSignUp">
+                    <div class="icon-area">
+                        <i class="fa fa-user-plus"></i>
+                    </div>
+                    <small class="text"> Sign up </small>
+                </a>
+            </div>
+            <div class="widget-header mr-5">
+                <a class="widget-view text-center" data-toggle="modal" data-target="#mdlLogin">
+                    <div class="icon-area">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <small class="text"> Login </small>
+                </a>
+            </div>
+            @*<div class="navbar-nav mr-lg-5">
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="icon-area">
+                                <i class="fa fa-user-check fa-lg"></i>
+                            </div>
+                            <small class="text">Profile</small>
+                        </a>
+                        <div class="dropdown-menu bg-dark text-white" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item btn-secondary">Dropdown link</a>
+                            <a class="dropdown-item btn-secondary">Dropdown link</a>
+                        </div>
+                    </div>
+                </div>*@
+        </div>
+    </nav>
+
+    <div class="container-fluid body-content">
+        <div id="strMessage" class="alert alert-dismissible fade show float-right">
+        </div>
+        @RenderBody()
+    </div>
+
+    <footer class="mojFooter" style="background-color:#212529">
+        <div class="container-fluid">
+            <div class="row">
+                @*<div class="col-md-9">
+                        <ul class="nav mt-2 mb-2">
+                            <li class="nav-item"><a class="nav-link">Home</a></li>
+                            <li class="nav-item"><a class="nav-link">About</a></li>
+                            <li class="nav-item"><a class="nav-link">Contact</a></li>
+                        </ul>
+                    </div>*@
+                <div class="col-md-12 mt-3 mb-2 text-center">
+                    <div class="pmd-site-info text-white">
+                        <span class="text-muted">&copy; 2020 PlantDelightPortal.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Login -->
+    <div class="modal fade" id="mdlLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">Login</h4>
+                        <form>
+                            <a href="\Home\LoginWithGmail\" class="btn btn-google btn-block text-white">
+                                <i class="fab fa-google"></i> &nbsp Sign in with Google
+                            </a>
+                            <br />
+                            <div class="form-group">
+                                <input id="txtEmail" name="" class="form-control" placeholder="Email" type="text">
+                            </div> <!-- form-group// -->
+                            <div class="form-group">
+                                <input id="txtPassword" name="" class="form-control" placeholder="Password" type="password">
+                            </div> <!-- form-group// -->
+                            <div class="form-group">
+                                <div class="float-right">
+                                    <a data-toggle="modal" data-target="#mdlForgotPassword" data-dismiss="modal" role="button"><span class="text-info font-weight-bold">Forgot password?</span></a>
+                                </div>
+                            </div> <!-- form-group form-check .// -->
+                            <div class="form-group">
+                                <a id="lnkLogin" class="btn btn-secondary btn-block btn-dark text-white">Login</a>
+                            </div> <!-- form-group// -->
+                        </form>
+                    </div> <!-- card-body.// -->
+                    <p class="text-center mt-2">Don't have account? <a data-toggle="modal" data-target="#mdlSignUp" data-dismiss="modal" role="button"><span class="text-info font-weight-bold">Sign up</span></a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Sign Up -->
+    <div class="modal fade" id="mdlSignUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h4 class="card-title mb-4">Sign Up</h4>
+                    <form method="post">
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <input id="txtFirstName" type="text" class="form-control" placeholder="First name" autocomplete="off" maxlength="100">
+                            </div>
+                            <div class="col form-group">
+                                <input id="txtLastName" type="text" class="form-control" placeholder="Last name" autocomplete="off" maxlength="100">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                @Html.DropDownListFor(m => m.GenderId, new SelectList(Model.lstGender, "Id", "Name"), "-- Gender --", new { Class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input id="txtMobileNo" type="text" class="form-control" placeholder="Mobile No." maxlength="10" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.DropDownListFor(m => m.SecurityQueId, new SelectList(Model.lstSecurityQue, "Id", "Question"), "-- Security Question --", new { Class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <input id="txtSecurityAns" type="text" class="form-control" placeholder="Answer" autocomplete="off" maxlength="100">
+                        </div>
+                        <div class="form-group">
+                            <input id="txtCreateEmail" type="text" class="form-control" placeholder="Email" autocomplete="off" maxlength="100">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input id="txtCreatePassword" class="form-control" type="password" placeholder="Create password" autocomplete="off" maxlength="10">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input id="txtConfirmPassword" class="form-control" type="password" placeholder="Confirm password" autocomplete="off" maxlength="10">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" id="btnSignUp" class="btn btn-block btn-dark"> Register </button>
+                        </div>
+                        <div class="form-group col-md-12 text-right">
+                            Existing User?<a data-toggle="modal" data-target="#mdlLogin" data-dismiss="modal" role="button"><span class="text-info font-weight-bold"> Log in</span></a>
+                        </div>
+                        <div id="divMsg" class="p-2"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="mdlForgotPassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div id="divForgotPassword1" class="card-body">
+                        <h4 class="card-title mb-4">Forgot Password</h4>
+                        <hr />
+                        <br />
+                        <div class="form-group">
+                            <input id="txtForgotPasswordEmail" name="" class="form-control" placeholder="Email" type="text" maxlength="100">
+                        </div>
+                        <div class="form-group">
+                            <a id="lnkNextForgotPassword1" class="btn btn-secondary btn-block btn-dark text-white">Next</a>
+                        </div>
+                        <div class="form-group col-md-12 text-right">
+                            Remember password?<a data-toggle="modal" data-target="#mdlLogin" data-dismiss="modal" role="button"><span class="text-info font-weight-bold"> Log in</span></a>
+                        </div>
+                    </div>
+                    <div id="divForgotPassword2" class="card-body d-none">
+                        <br />
+                        <div class="form-group">
+                            <input id="txtSecurityQueFP" class="form-control" type="text" readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <input id="txtSecurityAnsFP" type="text" class="form-control" placeholder="Answer" autocomplete="off" maxlength="100">
+                        </div>
+                        <div class="form-group">
+                            <a id="lnkNextForgotPassword2" class="btn btn-secondary btn-block btn-dark text-white">Next</a>
+                        </div>
+                        <div class="form-group col-md-12 text-right">
+                            Remember password?<a data-toggle="modal" data-target="#mdlLogin" data-dismiss="modal" role="button"><span class="text-info font-weight-bold"> Log in</span></a>
+                        </div>
+                    </div>
+                    <div id="divForgotPassword3" class="card-body d-none">
+                        <h4 class="card-title mb-4">Change Password</h4>
+                        <hr />
+                        <div class="form-group">
+                            <input id="txtNewPasswordFP" type="password" placeholder="New Password" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <input id="txtConfirmPasswordFP" type="password" placeholder="Confirm Password" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <a id="btnChangePassword" class="btn btn-dark form-control text-white">Save</a>
+                        </div>
+                        <div class="form-group col-md-12 text-right">
+                            Remember password?<a data-toggle="modal" data-target="#mdlLogin" data-dismiss="modal" role="button"><span class="text-info font-weight-bold"> Log in</span></a>
+                        </div>
+                    </div>
+                    <div id="divForgotPassword4" class="card-body d-none">
+                        <h4 class="card-title mb-4">Try Log in with Google</h4>
+                        <hr />
+                        <a href="\Home\LoginWithGmail\" class="btn btn-google btn-block text-white">
+                            <i class="fab fa-google"></i> &nbsp Log in with Google
+                        </a>
+                    </div>
+                    <div id="DivMsgForgotPassword" class="font-weight-bold float-right">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    var SecurityAns = "";
+    var UserId = "";
+
+    $(document).ready(function () {
+        $("#txtEmail").focus();
+    });
+
+    function ValidateSignUp() {
+        if ($("#txtFirstName").val() == "") {
+            $("#divMsg").text("Please enter first name.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+        if ($("#txtLastName").val() == "") {
+            $("#divMsg").text("Please enter last name.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+        if ($("#txtCreateEmail").val() == "") {
+            $("#divMsg").text("Please enter email id.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+        if ($("#txtMobileNo").val() == "") {
+            $("#divMsg").text("Please enter mobile no.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+        if ($("#txtCreatePassword").val() == "") {
+            $("#divMsg").text("Please enter password.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+        if ($("#txtConfirmPassword").val() == "") {
+            $("#divMsg").text("Please enter confirm password.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+        if ($("#txtCreatePassword").val() != $("#txtConfirmPassword").val()) {
+            $("#divMsg").text("create password and confirm password must be same.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+
+        if ($("#txtDateOfBirth").val() == "") {
+            $("#divMsg").text("Please select date fo birth.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+        if ($("#GenderId").val() == "") {
+            $("#divMsg").text("Please select gender.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+        if ($("#SecurityQueId").val() == "") {
+            $("#divMsg").text("Please select security question.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+        if ($("#txtSecurityAns").val() == "") {
+            $("#divMsg").text("Please enter answer.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+
+        /* for Create*/
+        if (CheckDataExists("UserMaster", "Email", $("#txtCreateEmail").val(), "")) {
+            $("#divMsg").text("Email already exists.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+        if (CheckDataExists("UserMaster", "MobileNo", $("#txtMobileNo").val(), "")) {
+            $("#divMsg").text("Mobile no. already exists.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+
+        return true;
+    }
+
+    $("#btnSignUp").click(function () {
+        if (ValidateSignUp()) {
+            $("#strMessage").text('');
+            $("#strMessage").fadeIn();
+            $("#strMessage").removeClass();
+
+            var model = {
+                FirstName: $("#txtFirstName").val(),
+                LastName: $("#txtLastName").val(),
+                Email: $("#txtCreateEmail").val(),
+                MobileNo: $("#txtMobileNo").val(),
+                Password: $("#txtCreatePassword").val(),
+                DateOfBirth: $("#txtDateOfBirth").val(),
+                GenderId: $("#GenderId").val(),
+                SecurityQueId: $("#SecurityQueId").val(),
+                SecurityAns: $("#txtSecurityAns").val()
+            }
+
+            $.ajax({
+                url: "/Home/SignUp",
+                data: JSON.stringify(model),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    $("#mdlSignUp").modal('hide');
+                    if (parseInt(result) > 0) {
+                        $("#strMessage").text("Congratulations, your account has been successfully created.");
+                        $("#strMessage").addClass("alert-success");
+                        $("#strMessage").fadeOut(3000);
+                    }
+                    else {
+                        $("#strMessage").text("user can't created.");
+                        $("#strMessage").addClass("alert-danger");
+                        $("#strMessage").fadeOut(3000);
+                    }
+                    clearControl();
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+    });
+
+    function clearControl() {
+        $("#divMsg").text('');
+        $("#txtFirstName").val("");
+        $("#txtLastName").val("");
+        $("#txtCreateEmail").val("");
+        $("#txtMobileNo").val("");
+        $("#txtCreatePassword").val("");
+        $("#txtDateOfBirth").val("");
+        $("#GenderId").val("");
+        $("#SecurityQueId").val("");
+        $("#txtSecurityAns").val("");
+    }
+
+    $("#lnkLogin").click(function () {
+        $("#strMessage").text('');
+        $("#strMessage").fadeIn();
+        $("#strMessage").removeClass();
+
+        if (Validation()) {
+            var empObj = {
+                Email: $('#txtEmail').val(),
+                Password: $('#txtPassword').val()
+            };
+
+            $.ajax({
+                url: "/Home/Login",
+                data: JSON.stringify(empObj),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    $('#mdlLogin').modal('hide');
+                    if (result.success == true) {
+                        if (result.IsAdmin == true) {
+                            window.location.href = '/Admin/DashboardAdmin/Index';
+                        }
+                        else {
+                            window.location.href = '/Home/UserHome';
+                        }
+                    }
+                    else {
+                        $("#strMessage").text(result.Msg);
+                        $("#strMessage").addClass("alert-danger");
+                        $("#strMessage").fadeOut(3000);
+                    }
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+    });
+    $("#txtEmail,#txtPassword").keypress(function (event) {
+        if (event.which == 13) {
+            event.preventDefault();
+            $("#lnkLogin").click();
+        }
+    });
+
+    function Validation() {
+        if ($("#txtEmail").val() == undefined || $("#txtEmail").val() == null || $("#txtEmail").val() == "") {
+            $("#txtEmail").focus();
+            return false;
+        }
+        if ($("#txtPassword").val() == undefined || $("#txtPassword").val() == null || $("#txtPassword").val() == "") {
+            $("#txtPassword").focus();
+            return false;
+        }
+        return true;
+    }
+
+    $('#lnkNextForgotPassword1').click(function () {
+        $('#DivMsgForgotPassword').removeClass('text-success');
+        $('#DivMsgForgotPassword').removeClass('text-danger');
+
+        if ($("#txtForgotPasswordEmail").val() == undefined || $("#txtForgotPasswordEmail").val() == null || $("#txtForgotPasswordEmail").val() == "") {
+            $('#DivMsgForgotPassword').html('Please enter email.');
+            $('#DivMsgForgotPassword').addClass('text-danger');
+            $("#txtForgotPasswordEmail").focus();
+            return false;
+        }
+
+        $.ajax({
+            url: "/Home/getUserDetailByEmail",
+            data: '{Email: "' + $("#txtForgotPasswordEmail").val() + '" }',
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (Result) {
+                if (Result.objmdlUserMaster != undefined && Result.objmdlUserMaster != null && Result.objmdlUserMaster != "") {
+                    if (Result.objmdlUserMaster.GoogleLogin) {
+                        $('#divForgotPassword1').addClass('d-none');
+                        $('#divForgotPassword4').removeClass('d-none');
+                    }
+                    else {
+                        $('#divForgotPassword1').addClass('d-none');
+                        $('#divForgotPassword2').removeClass('d-none');
+                        $('#txtSecurityQueFP').val(Result.objmdlUserMaster.SecurityQue);
+                        SecurityAns = Result.objmdlUserMaster.SecurityAns;
+                        UserId = Result.objmdlUserMaster.Id;
+                    }
+                }
+                else {
+                    $('#DivMsgForgotPassword').html('Email not available.');
+                    $('#DivMsgForgotPassword').addClass('text-danger');
+                }
+            },
+            error: function (xhr, status, error) {
+                $('#DivMsgForgotPassword').html('Something is wrong!');
+                $('#DivMsgForgotPassword').addClass('text-danger');
+            }
+        });
+    });
+
+    $('#lnkNextForgotPassword2').click(function () {
+        $('#DivMsgForgotPassword').removeClass('text-success');
+        $('#DivMsgForgotPassword').removeClass('text-danger');
+
+        if ($("#txtSecurityAnsFP").val() == undefined || $("#txtSecurityAnsFP").val() == null || $("#txtSecurityAnsFP").val() == "") {
+            $('#DivMsgForgotPassword').html('Please enter answer.');
+            $('#DivMsgForgotPassword').addClass('text-danger');
+            $("#txtSecurityAnsFP").focus();
+            return false;
+        }
+
+        if ($('#txtSecurityAnsFP').val().toUpperCase() != SecurityAns.toUpperCase()) {
+            $('#DivMsgForgotPassword').html('Answer is not matching.');
+            $('#DivMsgForgotPassword').addClass('text-danger');
+        }
+        else {
+            $('#divForgotPassword2').addClass('d-none');
+            $('#divForgotPassword3').removeClass('d-none');
+        }
+    });
+
+    $('#btnChangePassword').on('click', function () {
+        $('#DivMsgForgotPassword').removeClass('text-success');
+        $('#DivMsgForgotPassword').removeClass('text-danger');
+
+        if ($("#txtNewPasswordFP").val() == "") {
+            $("#DivMsgForgotPassword").text("Please enter new password.");
+            $("#DivMsgForgotPassword").addClass("text-danger");
+            return false;
+        }
+        if ($("#txtConfirmPasswordFP").val() == "") {
+            $("#DivMsgForgotPassword").text("Please enter confirm password.");
+            $("#DivMsgForgotPassword").addClass("text-danger");
+            return false;
+        }
+        if ($("#txtNewPasswordFP").val() != $("#txtConfirmPasswordFP").val()) {
+            $("#DivMsgForgotPassword").text("New password and confirm password must be same.");
+            $("#DivMsgForgotPassword").addClass("text-danger");
+            return false;
+        }
+
+        $.ajax({
+            url: "/Home/ChangePassword",
+            data: '{Password: "' + $("#txtNewPasswordFP").val() + '", Id: "' + UserId + '"}',
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (Result) {
+                if (Result.result == "success") {
+                    $('#DivMsgForgotPassword').html('Password changed.');
+                    $('#DivMsgForgotPassword').addClass('text-success');
+                }
+            },
+            error: function (xhr, status, error) {
+                $('#DivMsgForgotPassword').html('Something is wrong!');
+                $('#DivMsgForgotPassword').addClass('text-danger');
+            }
+        });
+    });
+</script>

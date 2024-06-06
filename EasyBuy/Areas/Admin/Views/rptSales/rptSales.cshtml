@@ -1,0 +1,120 @@
+﻿@model PlantDelightPortal.Areas.Admin.Models.mdlrptSales
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <section class="container-fluid bg-white p-0 m-0">
+        <div class="bg-secondary text-white text-center w-100 p-2">
+            <h5><strong>Sales</strong></h5>
+        </div>
+        <form>
+            <div class="row col-md-12 mt-2">
+                <div class="col-md-2">
+                    <span class="p-2">From Date:</span>
+                </div>
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.FromDate, new { @class = "form-control" })
+                </div>
+                <div class="col-md-2">
+                    <span class="p-2">To Date:</span>
+                </div>
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.ToDate, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row col-md-12 mt-2">
+                <div class="col-md-2">
+                    <span class="p-2">Status:</span>
+                </div>
+                <div class="col-md-2">
+                    @Html.DropDownListFor(m => m.StatusId, new SelectList(Model.lstOrderStatus, "Id", "Status"), "-- All --", new { @class = "form-control" })
+                </div>
+                <div class="col-md-2">
+                    <a id="btnSubmit" class="btn btn-dark btn-block text-white">Submit</a>
+                </div>
+            </div>
+        </form>
+    </section>
+    <hr />
+    <div class="container-fluid bg-white">
+        <div class="col-md-12 p-4 w-100">
+            <div class="table-responsive" style="height:400px;">
+                <table id="tblSales" class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th class="th-sm">
+                                Sr No.
+                            </th>
+                            <th class="th-sm">
+                                Order Date
+                            </th>
+                            <th class="th-sm">
+                                Order No.
+                            </th>
+                            <th class="th-sm">
+                                Item Name
+                            </th>
+                            <th class="th-sm">
+                                Amount
+                            </th>
+                            <th class="th-sm">
+                                Status
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="w-100"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#FromDate, #ToDate').datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+
+        if ('@Model.Flag' != '') {
+            $('#btnSubmit').click();
+        }
+    });
+
+    $('#btnSubmit').click(function () {
+        var model = {
+            "FromDate": $('#FromDate').val(),
+            "ToDate": $('#ToDate').val(),
+            "StatusId": $('#StatusId').val()
+        }
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            url: "/rptSales/rptSalesData",
+            data: JSON.stringify(model),
+            success: function (response) {
+                var html = ""
+
+                $.each(response, function (key, Item) {
+                    html += '<tr onclick="OrderDetails(\'' + Item.Id + '\');" role="button">';
+                    html += "<td>" + Item.SrNo + "</td>";
+                    html += "<td>" + Item.OrderDate + "</td>";
+                    html += "<td>" + Item.OrderNo + "</td>";
+                    html += "<td>" + Item.ItemName + "</td>";
+                    html += "<td>" + Item.Amount + "</td>";
+                    html += "<td>" + Item.OrderStatus + "</td>";
+                    html += "</tr>";
+                });
+
+                $("#tblSales tbody").html(html);
+            },
+            error: function (response) {
+                alert(response.responseText)
+            }
+        });
+        });
+
+        function OrderDetails(OrderId) {
+            window.location.href = "/Admin/OrderDetail/Index/" + OrderId
+        }
+    </script>

@@ -1,0 +1,264 @@
+﻿@model PlantDelightPortal.Areas.Admin.Models.mdlSubCategory
+
+<div class="jumbotron m-0 p-3 rounded-0">
+    <h4>SubCategory</h4>
+</div>
+<div id="strMessage" class="alert alert-dismissible fade show float-right" style="z-index:999999;" role="alert">
+</div>
+<div class="mt-2 ml-4">
+    <a id="btnAddNew" class="btn btn-dark text-white" data-toggle="modal" data-target="#SubCategoryModal" onclick="clearTextBox();"><i class="fa fa-plus"></i> Add New</a>
+</div>
+
+<div class="col-md-12 p-4 w-100">
+    <div class="table-responsive" style="height:400px;">
+        <table id="tblSubCategory" class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="th-sm w-auto sticky-top">
+                        Category
+                    </th>
+                    <th class="th-sm w-auto sticky-top">
+                        SubCategory
+                    </th>
+                    <th class="th-sm sticky-top">
+                    </th>
+                    <th class="th-sm sticky-top">
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="w-100"></tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="SubCategoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title float-left" id="myModalLabel">Add SubCategory</h4>
+                <button type="button" class="close float-right" data-dismiss="modal" onclick="clearTextBox();">×</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    @Html.HiddenFor(m => m.Id)
+                    <div class="form-group">
+                        @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.lstCategory, "Id", "Name"), "-- Category --", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "SubCategory", autocomplete = "off", maxlength = "100" })
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" id="btnAdd" onclick="return Add();">Add</button>
+                <button type="button" class="btn btn-dark" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal" onclick="clearTextBox();">Close</button>
+            </div>
+            <div id="divMsg" class="p-2"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#divMsg").text('');
+        FillSubCategory();
+    });
+
+    function FillSubCategory() {
+        $.ajax({
+            url: "/SubCategory/GetSubCategory",
+            type: "GET",
+            data: "json",
+            success: function (response) {
+                var html = ""
+
+                $.each(response, function (key, Item) {
+                    html += "<tr>";
+                    html += "<td>" + Item.CategoryName + "</td>";
+                    html += "<td>" + Item.Name + "</td>";
+                    html += "<td class='text-center'><a href='#' onclick=getbyID('" + Item.Id + "')><i class='fa fa-edit text-warning'></i></a></td>";
+                    html += "<td class='text-center'><a href='#' onclick=Delele('" + Item.Id + "')><i class='fa fa-trash text-danger'></i></a></td>";
+                    html += "</tr>";
+                });
+
+                $("#tblSubCategory tbody").html(html);
+            },
+            error: function (response) {
+                alert(response.responseText)
+            }
+        });
+    }
+
+    function Validate() {
+        if ($("#CategoryId").val() == null || $("#CategoryId").val() == "") {
+            $("#divMsg").text("Please select Category.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+
+        if ($("#Name").val() == "") {
+            $("#divMsg").text("Please enter SubCategory name.");
+            $("#divMsg").addClass("text-danger");
+            return false;
+        }
+
+        if ($('#Id').val() != null && $('#Id').val() != "") { /* for Update*/
+            if (CheckDataExists("SubCategory", "Name", $("#Name").val(), " AND CategoryId = '" + $('#CategoryId').val() + "' AND Id <> '" + $('#Id').val() + "'")) {
+                $("#divMsg").text("SubCategory name already exists.");
+                $("#divMsg").addClass("text-danger");
+                return false;
+            }
+        }
+        else { /* for Create*/
+            if (CheckDataExists("SubCategory", "Name", $("#Name").val(), " AND CategoryId = '" + $('#CategoryId').val() + "'")) {
+                $("#divMsg").text("SubCategory name already exists.");
+                $("#divMsg").addClass("text-danger");
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    function Add() {
+        $("#divMsg").text('');
+
+        if (Validate()) {
+            $("#strMessage").text('');
+            $("#strMessage").fadeIn();
+
+            var model = {
+                Id: $('#Id').val(),
+                Name: $('#Name').val(),
+                CategoryId: $('#CategoryId').val()
+            };
+
+            $.ajax({
+                url: "/SubCategory/Add",
+                data: JSON.stringify(model),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    FillSubCategory();
+                    $('#SubCategoryModal').modal('hide');
+                    if (parseInt(result) > 0) {
+                        $("#strMessage").text($("#Name").val() + " successfully created.");
+                        $("#strMessage").addClass("alert-success");
+                        $("#strMessage").fadeOut(3000);
+                    }
+                    else {
+                        $("#strMessage").text($("#Name").val() + " can't created.");
+                        $("#strMessage").addClass("alert-danger");
+                        $("#strMessage").fadeOut(3000);
+                    }
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+    }
+
+    function getbyID(EmpID) {
+        $.ajax({
+            url: "/SubCategory/getbyID/" + EmpID,
+            typr: "GET",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            success: function (result) {
+                $('#SubCategoryModal').modal('show');
+                $('#Id').val(result.Id);
+                $('#Name').val(result.Name);
+                $('#CategoryId').val(result.CategoryId);
+                $('#btnUpdate').show();
+                $('#btnAdd').hide();
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+        return false;
+    }
+
+    function Update() {
+        $("#divMsg").text('');
+        $("#strMessage").text('');
+        $("#strMessage").fadeIn();
+
+        if (Validate()) {
+            var empObj = {
+                Id: $('#Id').val(),
+                Name: $('#Name').val(),
+                CategoryId: $('#CategoryId').val()
+            };
+            $.ajax({
+                url: "/SubCategory/Update",
+                data: JSON.stringify(empObj),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    FillSubCategory();
+                    $('#SubCategoryModal').modal('hide');
+                    if (parseInt(result) > 0) {
+                        $("#strMessage").text($("#Name").val() + " successfully updated.");
+                        $("#strMessage").addClass("alert-success");
+                        $("#strMessage").fadeOut(3000);
+                    }
+                    else {
+                        $("#strMessage").text($("#Name").val() + " can't updated.");
+                        $("#strMessage").addClass("alert-danger");
+                        $("#strMessage").fadeOut(3000);
+                    }
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+    }
+
+    //function for deleting SubCategory's record
+    function Delele(ID) {
+        var ans = confirm("Are you sure you want to delete this Record?");
+
+        if (ans) {
+            $("#strMessage").text('');
+            $("#strMessage").fadeIn();
+
+            $.ajax({
+                url: "/SubCategory/Delete/" + ID,
+                type: "POST",
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function (result) {
+                    FillSubCategory();
+                    if (parseInt(result) > 0) {
+                        $("#strMessage").text($("#Name").val() + " successfully deleted.");
+                        $("#strMessage").addClass("alert-success");
+                        $("#strMessage").fadeOut(3000);
+                    }
+                    else {
+                        $("#strMessage").text($("#Name").val() + " can't deleted.");
+                        $("#strMessage").addClass("alert-danger");
+                        $("#strMessage").fadeOut(3000);
+                    }
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+    }
+
+    function clearTextBox() {
+        $("#divMsg").text('');
+        $('#Id').val("");
+        $('#Name').val("");
+        $('#CategoryId').val("");
+        $('#btnUpdate').hide();
+        $('#btnAdd').show();
+    }
+</script>

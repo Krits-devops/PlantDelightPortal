@@ -1,0 +1,199 @@
+﻿@model EasyBuy.Areas.Admin.Models.mdlrptOrder
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<section class="container-fluid bg-white p-0 m-0">
+    <div class="bg-secondary text-white text-center w-100 p-2">
+        <h5><strong>Order Status</strong></h5>
+    </div>
+    <form>
+        @Html.Hidden("hdnOrderId", "")
+        <div class="row col-md-12 mt-2">
+            <div class="col-md-2">
+                <span class="p-2">From Date:</span>
+            </div>
+            <div class="col-md-2">
+                @Html.TextBoxFor(m => m.FromDate, new { @class = "form-control" })
+            </div>
+            <div class="col-md-2">
+                <span class="p-2">To Date:</span>
+            </div>
+            <div class="col-md-2">
+                @Html.TextBoxFor(m => m.ToDate, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row col-md-12 mt-2">
+            <div class="col-md-2">
+                <span class="p-2">Order No.:</span>
+            </div>
+            <div class="col-md-2">
+                @Html.TextBoxFor(m => m.OrderNo, new { @class = "form-control", maxlength = "10" })
+            </div>
+            <div class="col-md-2">
+                <span class="p-2">Status:</span>
+            </div>
+            <div class="col-md-2">
+                @Html.DropDownListFor(m => m.StatusId, new SelectList(Model.lstOrderStatus, "Id", "Status"), "-- All --", new { @class = "form-control" })
+            </div>
+            <div class="col-md-2">
+                <a id="btnSubmit" class="btn btn-dark btn-block text-white">Submit</a>
+            </div>
+        </div>
+    </form>
+</section>
+<hr />
+<div class="container-fluid bg-white">
+    <div class="col-md-12 p-4 w-100">
+        <div class="table-responsive" style="height:400px;">
+            <table id="tblOrderStatus" class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="th-sm">
+                            Sr No.
+                        </th>
+                        <th class="th-sm">
+                            Order Date
+                        </th>
+                        <th class="th-sm">
+                            Order No.
+                        </th>
+                        <th class="th-sm">
+                            Customer
+                        </th>
+                        <th class="th-sm">
+                            Amount
+                        </th>
+                        <th class="th-sm">
+                            Status
+                        </th>
+                        <th class="th-sm">
+                        </th>
+                        <th class="th-sm">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="w-100"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="OrderStatusModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title float-left" id="myModalLabel">Add Country</h4>
+                @*<a class="close" data-dismiss="modal" onclick="clearTextBox();">&times;</a>*@
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        @Html.DropDownListFor(m => m.UpdateStatusId, new SelectList(Model.lstOrderStatus, "Id", "Status"), "-- All --", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group float-right">
+                        <button type="button" class="btn btn-dark" id="btnSubmit" onclick="Update();">Submit</button>
+                        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
+                    </div>
+                    <div id="divMsg" class="p-2"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#FromDate, #ToDate').datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+
+        if ('@Model.Flag' != '') {
+            $('#btnSubmit').click();
+        }
+    });
+
+    $('#btnSubmit').click(function () {
+        var model = {
+            "FromDate": $('#FromDate').val(),
+            "ToDate": $('#ToDate').val(),
+            "OrderNo": $('#OrderNo').val(),
+            "StatusId": $('#StatusId').val()
+        }
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            url: "/rptOrder/rptOrderData",
+            data: JSON.stringify(model),
+            success: function (response) {
+                var html = ""
+
+                $.each(response, function (key, Item) {
+                    html += "<tr>";
+                    html += "<td>" + Item.SrNo + "</td>";
+                    html += "<td>" + Item.OrderDate + "</td>";
+                    html += "<td>" + Item.OrderNo + "</td>";
+                    html += "<td>" + Item.SName + "</td>";
+                    html += "<td>" + Item.OrderAmount + "</td>";
+                    html += "<td>" + Item.OrderStatus + "</td>";
+                    html += "<td class='text-center'><a href='#' class='text-info' onclick=getStatusByOrderId('" + Item.Id + "','" + Item.OrderStatusId + "')>Update Status</a></td>";
+                    html += "<td class='text-center text-info'><a href='#' class='text-info' onclick=OrderDetails('" + Item.Id + "')>Detail</a></td>";
+                    html += "</tr>";
+                });
+
+                $("#tblOrderStatus tbody").html(html);
+            },
+            error: function (response) {
+                alert(response.responseText)
+            }
+        });
+    });
+
+    function OrderDetails(OrderId) {
+        window.location.href = "/Admin/OrderDetail/Index/" + OrderId
+    }
+
+    function getStatusByOrderId(OrderId,OrderStatusId) {
+        $('#OrderStatusModal').modal('show');
+        $('#hdnOrderId').val(OrderId);
+        $('#UpdateStatusId').val(OrderStatusId);
+    }
+
+    function Update() {
+        $("#divMsg").text('');
+        $("#strMessage").text('');
+        $("#strMessage").fadeIn();
+
+            var empObj = {
+                OrderId: $('#hdnOrderId').val(),
+                OrderStatusId: $('#UpdateStatusId').val()
+            };
+            $.ajax({
+                url: "/OrderStatus/UpdateOrderStatus",
+                data: JSON.stringify(empObj),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    $('#OrderStatusModal').modal('hide');
+                    $('#btnSubmit').click();
+
+                    if (parseInt(result) > 0) {
+                        $("#strMessage").text($("#Name").val() + " successfully updated.");
+                        $("#strMessage").addClass("alert-success");
+                        $("#strMessage").fadeOut(3000);
+                    }
+                    else {
+                        $("#strMessage").text($("#Name").val() + " can't updated.");
+                        $("#strMessage").addClass("alert-danger");
+                        $("#strMessage").fadeOut(3000);
+                    }
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+    }
+</script>
